@@ -1,0 +1,388 @@
+html *
+{
+  font-family:font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; ;/* 'oswaldregular';*/
+	src: url('../fonts/oswald-webfont.eot');
+	src: url('../fonts/oswald-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/oswald-webfont.woff') format('woff'),  url('../fonts/oswald-webfont.ttf') format('truetype'),  url('../fonts/oswald-webfont.svg#oswaldregular') format('svg');
+	
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'oswaldregular';
+	src: url('../fonts/oswald-webfont.eot');
+	src: url('../fonts/oswald-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/oswald-webfont.woff') format('woff'),  url('../fonts/oswald-webfont.ttf') format('truetype'),  url('../fonts/oswald-webfont.svg#oswaldregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/*------------------------- Layout styles ------------------------*/
+body {
+	margin:0;
+	font-family:Arial, Helvetica, sans-serif;
+	background: url(../images/bg-body.jpg);
+}
+a {
+	outline:none;
+}
+a img {
+	border:0;
+	display:block;
+}
+p a:hover {
+	color:#e5e5e5!important;
+}
+/*------------------------- Header ---------------------------*/
+#header {
+	background:url(../images/bg-header.png) repeat-x;
+	height:184px;
+	margin:15px 0 0;
+}
+#header div {
+	margin:0 auto;
+	
+	padding:28px 0 0;
+	position:relative;
+	width:960px;
+}
+
+#header div a#logo {
+	display:block;
+	height:129px;
+	margin:0 auto;
+	width:587px;
+}
+
+/*------------------------------*/
+#body {
+	background:none #000;
+	margin-top:21px!important;
+}
+
+#body.AdminboardA {
+	border:1px solid #4f4f4f;
+	margin:0 auto;
+	width:958px;
+padding-bottom:160px;	
+	
+}
+#body.Adminboard p
+{
+	color:white;
+
+}
+.formReg{
+	
+	margin-left:100px;
+}
+.formReg .formline{
+
+}
+.formReg label{
+	color:white;
+	width:auto;	
+		
+}
+.formReg input{
+	position:absolute;
+	left:37%;
+}
+input.submit {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  font-size:1.3em;
+  padding: 12px 24px;
+  text-decoration: none;
+  margin: 4px 2px;
+
+  
+}
+input.submit:hover{
+
+   background-color: #0fd190;
+   border: 2px solid #054d26;
+}
+.helloAd{
+		
+		text-align:center;
+		height:100px;
+    font-style:arial;
+	margin:0;
+	overflow:hidden;
+	position:absolute;
+	font-size:1.3em;
+	bottom:59px;
+	}
+	#body.Adminboard h1.banner{
+		color:black;
+		text-align:center;
+		width:300px;
+		position:relative;
+		left:33%;
+	    border:ridge #e3e1da;
+		padding:10px;
+		margin-bottom:40px;
+		background-color:#f7e19e;
+		
+	}
+	
+#body.Adminboard{
+	border:1px solid #4F4F4F;
+	width:958px;
+	height:auto;
+    /*height:580px;*/
+	overflow:hidden;
+	margin:0 auto 428px;
+	}
+#body.Adminboard	.Board{
+
+	width:440px;
+	margin-bottom:40px;
+	margin-right:20px;
+	display:inline;
+	float:left;
+	/*border:1px solid white;
+	background-color:red;*/
+    }
+#body.Adminboard .Board .menutitle{
+
+	    color:black;
+		font-size:1.5em;
+		text-align:center;
+		width:120px;
+		position:relative;
+		left:40%;
+	    border:ridge #e3e1da;
+		padding:4px;
+		margin-bottom:4px;
+		background-color:#f7e19e;
+    }
+#body.Adminboard a.iBoard{
+	background-color:white;
+	display:block;
+	width:350px;
+	border:ridge #e3e1da;
+	margin:10px 30px 10px 50px;
+	padding:5px 15px 5px 15px;
+	color:black;
+	text-decoration:none;
+}
+#body.Adminboard a.iBoard:hover{
+	background-color:#f7e19e;
+	border:inset #d6a100;
+}
+
+ a.bt{
+	background-color:#685a37;
+	width:170px;
+	padding:5px;
+	position:absolute;
+	text-decoration:none;
+	color:white;
+	text-align:center;
+	top:120px;
+	left:0px;
+	border: 1px solid #fff5dd;
+}
+
+a.logout{
+	background-color:#685a37;
+	width:80px;
+	padding:5px;
+	position:absolute;
+	text-decoration:none;
+	color:white;
+	text-align:center;
+	top:120px;
+	right:10px;
+	border: 1px solid #fff5dd;
+}
+.butonadmin{
+	background-color:green;
+	width:80px;
+	padding:5px;
+	color:white;
+	text-align:center;	
+}
+
+#body.Adminboard table.report {
+  background-color:white;
+  width: 100%;
+  border-collapse: collapse;
+  font-size:0.9em;
+  
+}
+#body.Adminboard table.report  td, th {
+  border: 1px solid black;
+
+
+}
+#body.Adminboard table.report th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  font-size:1.2em;
+}
+#body.Adminboard table.report tr{background-color: #f2f2f2;}
+#body.Adminboard table.report .imgtable{
+	width:55px;
+	height:80px;
+	padding-left:15px;
+}
+/*----------------Table List------------------*/
+#tableEdit { 
+ color: #333;
+ background:#fceecb;
+ margin: 0px 0px 0px 0px;
+ padding: 0px;
+ width: 154px;
+ float: left;
+overflow:hidden;
+height:200px;
+
+}
+.vertical-menu {
+  margin-top:20px;
+  width: 200px; /* Set a width if you like */
+
+}
+
+.vertical-menu a {
+  background-color: #fdf3da; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+  border-top : 1px solid #e8dcaf;
+  border-bottom : 1px solid #e8dcaf;
+  
+}
+
+.vertical-menu a:hover {
+  background-color: #f5e7b3; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+  background-color: #a99667; /* Add a green color to the "active/current" link */
+  color: white;
+}
+
+
+
+/*------------------------- Footer ---------------------------*/
+#footer {
+	background:url(../images/bg-footer.png) repeat-x left bottom;
+	clear:both;
+	height: 47px;/*217px;*/
+	margin:27px 0 0;
+}
+#footer div {
+	margin:0 auto;
+	overflow:hidden;
+	width:960px;
+}
+
+
+#footer div div span {
+	color:#fff;
+	font-size:12px;
+	font-weight:700;
+	line-height:18px;
+}
+#footer div div ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#footer div div ul li {
+	width:285px;
+}
+#footer div div ul li p {
+	color:#a5a5a5;
+	float:none;
+	font-size:11px;
+	line-height:18px;
+	margin:18px 0 0;
+}
+#footer div div ul li span a {
+	color:#af0000;
+	display:inline-block;
+	font-size:11px;
+	font-style:italic;
+	font-weight:400;
+	text-decoration:none;
+}
+#footer div div ul li span a:hover {
+	color:#ff0000;
+	text-decoration:none!important;
+}
+#footer div div p {
+	color:#a5a5a5;
+	float:none;
+	font-size:11px;
+	line-height:18px;
+	margin:18px 0 0;
+	width:auto;
+	
+}
+#footer div div p a {
+	color:#a5a5a5;
+}
+
+#footer div p {
+	clear:both;
+	color:white; /*#a5a5a5;*/
+	float:left;
+	font-size:11px;
+	line-height:10px;
+	margin-top:8px;
+	width:300px;
+}
+#footer div div.connect {
+	border:0;
+	float:right;
+	height:auto;
+	margin:4px 10px 0 0;
+	min-height:0;
+	width:auto;
+}
+#footer div div.connect span {
+	color: white; /*#a5a5a5;*/
+	float:left;
+	font-size:11px;
+	font-weight:400;
+	line-height:18px;
+	margin:0 13px 0 0;
+}
+#footer div div.connect a {
+	display:block;
+	float:left;
+	text-indent:-99999px;
+}
+#footer div div.connect a#facebook {
+	background:url(../images/icons.png) no-repeat 0 0;
+	height:17px;
+	width:9px;
+}
+#footer div div.connect a#facebook:hover {
+	background:url(../images/icons.png) no-repeat 0 -90px;
+}
+#footer div div.connect a#twitter {
+	background:url(../images/icons.png) no-repeat 0 -18px;
+	height:17px;
+	margin:0 15px 0 16px;
+	width:18px;
+}
+#footer div div.connect a#twitter:hover {
+	background:url(../images/icons.png) no-repeat 0 -54px;
+}
+#footer div div.connect a#googleplus {
+	background:url(../images/icons.png) no-repeat 0 -36px;
+	height:17px;
+	width:17px;
+}
+#footer div div.connect a#googleplus:hover {
+	background:url(../images/icons.png) no-repeat 0 -72px;
+}
