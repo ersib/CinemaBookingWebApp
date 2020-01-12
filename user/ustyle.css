@@ -1,0 +1,486 @@
+/* Website template by freewebsitetemplates.com */
+/*------------------------- Fonts ---------------------------*/
+
+html *
+{
+  font-family:font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;/* 'oswaldregular';*/
+	src: url('../fonts/oswald-webfont.eot');
+	src: url('../fonts/oswald-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/oswald-webfont.woff') format('woff'),  url('../fonts/oswald-webfont.ttf') format('truetype'),  url('../fonts/oswald-webfont.svg#oswaldregular') format('svg');
+	
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'oswaldregular';
+	src: url('../fonts/oswald-webfont.eot');
+	src: url('../fonts/oswald-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/oswald-webfont.woff') format('woff'),  url('../fonts/oswald-webfont.ttf') format('truetype'),  url('../fonts/oswald-webfont.svg#oswaldregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/*------------------------- Layout styles ------------------------*/
+body {
+	margin:0;
+	font-family:Arial, Helvetica, sans-serif;
+	background: url(../images/bg-body.jpg);
+
+}
+a {
+	outline:none;
+	text-decoration:none;
+}
+a:hover{
+	color:inherit;
+}
+a img {
+	border:0;
+	display:block;
+}
+p a:hover {
+	color:#e5e5e5!important;
+}
+/*------------------------- Header ---------------------------*/
+#header {
+	background:url(../images/bg-header.png) repeat-x;
+	height:184px;
+	margin:15px 0 0;
+	
+}/*
+#header {
+		background:url(../images/bg-header.png) repeat-x;
+ color: #333;
+ width: 1343px;
+ float: left;
+ padding: 10px;
+ border: 1px solid #ccc;
+ height: 100px;
+ margin: 10px 0px 0px 0px;
+ background-color:#F3F2ED;
+}*/
+#header div {
+	margin:0 auto;
+	padding:28px 0 0;
+	position:relative;
+	width:960px;
+}
+
+#header div a#logo {
+	display:block;
+	height:129px;
+	margin:0 auto;
+	width:587px;
+}
+#header div ul {
+	height:100px;
+	left:144px;
+	list-style:none;
+	margin:0;
+	overflow:hidden;
+	padding:0;
+	position:absolute;
+	top:119px;
+}
+#header div ul li:first-child {
+	margin:0;
+}
+#header div ul li {
+	float:left;
+	height:66px;
+	margin:0 0 0 65px;
+	text-align:left;
+	position:relative;
+}
+#header div ul li a {
+	color:#000;
+	font-family:oswaldregular;
+	font-size:18px;
+	line-height:24px;
+	text-decoration:none;
+	text-transform:uppercase;
+}
+#header div ul li.selected a, #header div ul li a:hover {
+	color:#af0000;
+}
+#header div ul li ul {
+	height:auto;
+	left:-99999px;
+	overflow:hidden;
+	position:absolute;
+	top:37px;
+	width:115px;
+}
+#header div ul li:hover ul {
+	left:0;
+	top:37px;
+}
+#header div ul li ul li {
+	background:none #343434;
+	border:1px solid #4f4f4f;
+	float:none;
+	height:29px;
+	margin:-1px 0 0;
+	padding:0 12px;
+	position:relative;
+	width:auto;
+	z-index:1000;
+}
+#header div ul li ul li:hover {
+	background:none #af0000;
+}
+#header div ul li ul li:hover {
+	left:0;
+	top:0;
+}
+#header div ul li ul li a {
+	color:#a5a5a5!important;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	line-height:28px;
+	text-transform:none;
+}
+#header div ul li ul li.selected a, #header div ul li ul li a:hover {
+	color:#fff!important;
+}
+/*------------------------- Body ---------------------------*/
+#body {
+	background:none #000;
+	margin-top:11px!important;
+	overflow:hidden;
+	
+}
+.top-barl{
+	height: 50px;
+ width: 200px;
+  background:#171717;
+  border:1px solid #272b30;
+  margin-bottom:5px;
+}
+.top-barr{
+	height: 50px;
+ width: 1200px;
+  background:#343a40;
+   margin-bottom:5px;
+}
+
+#leftcolumn { 
+ color: #333;
+ background:#fceecb;
+ margin: 0px 0px 0px 0px;
+ padding: 0px;
+ width: 154px;
+ float: left;
+overflow:hidden;
+height:200px;
+
+}
+.vertical-menu {
+  margin-top:20px;
+  width: 200px; /* Set a width if you like */
+
+}
+
+.vertical-menu a {
+  background-color: #fdf3da; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+  border-top : 1px solid #e8dcaf;
+  border-bottom : 1px solid #e8dcaf;
+  
+}
+
+.vertical-menu a:hover {
+  background-color: #f5e7b3; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+  background-color: #a99667; /* Add a green color to the "active/current" link */
+  color: white;
+}
+#rightcolumn { 
+ float: right;
+ color: #333;
+ border: 1px solid #ccc;
+ background:#fdf3da;
+ margin: 0px 0px 0px 0px;
+ padding: 0px;
+
+ width:838px;
+ display: inline;
+ overflow:hidden;
+ /*position:absolute;*/
+height:auto;
+/*font-family: "Times New Roman", Times, serif;*/
+}
+#rightcolumn h3{
+	position: relative;
+    background-color: #ffffff;
+    padding: 10px;
+    width: 450px;
+    left: 22%;
+    text-align: center;
+    border: 2px solid #e0dfdf;
+
+}
+
+/*------------------------------------------------------------------------------------------------*/
+#body.Adminboard{
+	border:1px solid #4F4F4F;
+	width:998px;
+    height:auto;
+	margin:0 auto 428px;
+	}
+#body.Userboard{
+	border:1px solid #4F4F4F;
+	width:998px;
+    height:auto;
+	margin:0 auto 50px;
+	background-color: #fceecb;
+
+	}
+a.logout{
+	background-color:green;
+	width:80px;
+	padding:5px;
+	position:absolute;
+	text-decoration:none;
+	color:white;
+	text-align:center;
+	top:120px;
+	right:10px;
+}
+
+/*  Editime shtese */
+
+
+
+
+
+
+#body.bookreport{
+	border:1px solid #4F4F4F;
+	margin:0 auto 428px;
+	overflow:hidden;
+	width:958px;
+    height:580px;
+	font-family: "Arial", Arial, Helvetica, sans-serif;
+}
+#body.bookreport table{
+  color:black;
+  width: 100%;
+  border-collapse: collapse;
+  font-size:0.8em;
+}
+#body.bookreport table td, #body.bookreport table th {
+  border: 1px solid black;
+
+}
+#body.bookreport th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+  font-size:1.2em;
+}
+#body.bookreport tr{background-color: #f2f2f2;}
+#body.bookreport .imgtable{
+	width:55px;
+	height:80px;
+	padding-left:15px;
+}
+/*---------------boooking.php css------------------*/
+.booking-movie{
+
+	overflow:hidden;
+	width:430px;
+	height:auto;
+	position:relative;
+	left:26%;
+	margin-top:15px;
+	font-family: serif;
+    font-size: 1.1em;
+	color:white;
+}
+.book-title{
+	
+    width: 150px;
+    height: 30px;
+    padding: 10px;
+    font-size: 1.6em;
+    text-align: center;
+    left: 29%;
+    position: relative;
+    font-family: serif;
+    font-weight: bold;
+}
+.ticket{
+	    width: 292px;
+    background-color: #f0e2bf;
+    margin-left: 70px;
+    margin-top: 20px;
+    color: black;
+    border: 5px solid #3f310e;
+    font-size: 1em;
+}
+.book-image{
+	    background-color: green;
+    width: 300px;
+    height: 370px;
+    position: relative;
+    left: 16%;
+	   border: 1px solid antiquewhite;
+    border-style: ridge;
+}
+.book-cinema{
+	position:relative;
+	left:27%;
+	margin-bottom:7px;
+}
+.book-cinema p{
+	display:inline;
+	color:#8e0000;
+}
+.butonadmin{
+	background-color:green;
+	width:80px;
+	padding:2px;
+	color:white;
+	text-align:center;	
+}
+.myaccount{
+	width:360px;
+	height:auto;
+	border:2px solid white;
+	position:relative;
+	left:29%;
+}
+/*---------------boooking.php css------------------*/
+
+/*################### MY BOOKINGS ################*/
+
+.TABELA{
+	width:830px;
+	position:relative;
+}
+
+/*################### MY BOOKINGS ################*/
+
+
+/*------------------------- Footer ---------------------------*/
+#footer {
+	background:url(../images/bg-footer.png) repeat-x left bottom;
+	clear:both;
+	height: 47px;/*217px;*/
+	margin:8px 0 0;
+
+}
+#footer div {
+	margin:0 auto;
+	overflow:hidden;
+	width:960px;
+}
+
+
+#footer div div span {
+	color:#fff;
+	font-size:12px;
+	font-weight:700;
+	line-height:18px;
+}
+#footer div div ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#footer div div ul li {
+	width:285px;
+}
+#footer div div ul li p {
+	color:#a5a5a5;
+	float:none;
+	font-size:11px;
+	line-height:18px;
+	margin:18px 0 0;
+}
+#footer div div ul li span a {
+	color:#af0000;
+	display:inline-block;
+	font-size:11px;
+	font-style:italic;
+	font-weight:400;
+	text-decoration:none;
+}
+#footer div div ul li span a:hover {
+	color:#ff0000;
+	text-decoration:none!important;
+}
+#footer div div p {
+	color:#a5a5a5;
+	float:none;
+	font-size:11px;
+	line-height:18px;
+	margin:18px 0 0;
+	width:auto;
+	
+}
+#footer div div p a {
+	color:#a5a5a5;
+}
+
+#footer div p {
+	clear:both;
+	color:white; /*#a5a5a5;*/
+	float:left;
+	font-size:11px;
+	line-height:10px;
+	margin-top:8px;
+	width:300px;
+}
+#footer div div.connect {
+	border:0;
+	float:right;
+	height:auto;
+	margin:4px 10px 0 0;
+	min-height:0;
+	width:auto;
+}
+#footer div div.connect span {
+	color: white; /*#a5a5a5;*/
+	float:left;
+	font-size:11px;
+	font-weight:400;
+	line-height:18px;
+	margin:0 13px 0 0;
+}
+#footer div div.connect a {
+	display:block;
+	float:left;
+	text-indent:-99999px;
+}
+#footer div div.connect a#facebook {
+	background:url(../images/icons.png) no-repeat 0 0;
+	height:17px;
+	width:9px;
+}
+#footer div div.connect a#facebook:hover {
+	background:url(../images/icons.png) no-repeat 0 -90px;
+}
+#footer div div.connect a#twitter {
+	background:url(../images/icons.png) no-repeat 0 -18px;
+	height:17px;
+	margin:0 15px 0 16px;
+	width:18px;
+}
+#footer div div.connect a#twitter:hover {
+	background:url(../images/icons.png) no-repeat 0 -54px;
+}
+#footer div div.connect a#googleplus {
+	background:url(../images/icons.png) no-repeat 0 -36px;
+	height:17px;
+	width:17px;
+}
+#footer div div.connect a#googleplus:hover {
+	background:url(../images/icons.png) no-repeat 0 -72px;
+}
