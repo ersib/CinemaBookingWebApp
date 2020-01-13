@@ -93,8 +93,6 @@ class User {
 return $stmt;
     }
 
-
-
     // Delete
     public function delete($id){
       try{
@@ -169,6 +167,17 @@ return $stmt;
       echo '<script>alert("Ga gabim ne DB")</script>';
       $row=$stmt->fetchAll();
       return $row;
+    }
+
+    public function uniqueUsername($username){
+      $sql="select * from users2 where username='$username' and Id_klient!='$this->userId'";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      $row=$stmt->fetchAll();
+      if(count($row))
+      return false;
+      else
+      return true;
     }
 
 }
