@@ -122,7 +122,7 @@
 					     $query_run=mysqli_query($con,$query);
 					  if(mysqli_num_rows($query_run)>0)*/
 						$user=new User();
-						if($user->getUserByUsername($usernames))
+						if($user->getUserByUsername($username))
 					  {
 					    echo '<script type="text/javascript"> alert("User already exsts ... Try another username")</script>';
 					  }

@@ -162,12 +162,8 @@
 				   $adresa=$_POST['adresa'];
 				   $qyteti=$_POST['qyteti'];
 
-					 //$sql="select * from users2 where username='$username' and Id_klient<>'$editId'";
-			     //$result=mysqli_query($con,$sql);
-				   //$nr=mysqli_num_rows($result);
 
-
-						if(isset($_GET['editID'])&& !isset($_POST['ditelindja'])){
+						if(isset($_GET['editID']) && !isset($_POST['ditelindja'])){
 							      if(!$edited_user->uniqueUsername($username))
 					          {
 					               echo '<script type="text/javascript"> alert("Already used username !")</script>';
@@ -177,7 +173,7 @@
 						echo '<script type="text/javascript"> alert("Changes are made succesfully !")</script>';
 							  }
 						}
-						if(isset($_GET['editID'])&& isset($_POST['ditelindja'])){
+						else if(isset($_GET['editID']) && isset($_POST['ditelindja'])){
 							  if(!$edited_user->uniqueUsername($username))
 					          {
 					               echo '<script type="text/javascript"> alert("Alreadu used username !")</script>';
@@ -190,17 +186,21 @@
 						}
 						else
 						{
-
-							if($edited_user->uniqueUsername($username)){
-							if($password==$cpassword)
-			                {
-							$user->insert($name,$username,$password,$tel,$email,$ditelindja,$adresa,$qyteti);
-							echo '<script type="text/javascript"> alert("User is added succesfully !")</script>';
+	echo '<script type="text/javascript"> alert("U futem ne else")</script>';
+							//if($edited_user->uniqueUsername($username)){
+							if($temp=$user->getUserByUsername($username))
+							{
+								echo '<script type="text/javascript"> alert("User already exsts ... Try another username '.$temp.'")</script>';
 							}
 							else{
-								echo '<script type="text/javascript"> alert("The password doesn\'t match !")</script>';
-							}
-							}
+							  if($password==$cpassword){
+							  $user->insert($name,$username,$password,$tel,$email,$ditelindja,$adresa,$qyteti);
+							  echo '<script type="text/javascript"> alert("User is added succesfully !")</script>';
+							  }
+							  else{
+								 echo '<script type="text/javascript"> alert("The password doesn\'t match !")</script>';
+							  }
+              }
 						}
 		   }
 		       if(isset($_POST['goback']))

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once('../dbconfig/config.php');
+	//require_once('../dbconfig/config.php');
 	require_once '../classes/movie.php';
 	$film=new Movie();
 	if(isset($_GET['deleteID']))
@@ -36,16 +36,13 @@
 
 		<div class="panel panel-default" style="margin-bottom:0px;">
 
-						<div class="panel-heading" style="font-size:1.5em;">
-                          Movie Table
-                        </div>
-
+						<div class="panel-heading" style="font-size:1.5em;">Movie Table</div>
 						<br>
 
 						<a href="admin_addmovie.php" class="btn btn-info" style="margin-left:20px; text-decoration:none;"> + Add new movie</a>
                        <div style="left:630px;position:relative;">
 					   <form method="post">
-					   <input type="text" name="input" placeholder="Search by name or id ..." />
+					   <input type="text" name="input" placeholder="Search by title ..." />
 					   <input type="submit" name="search" value="Search" class="btn btn-info"/>
 					   </form></div>
 
@@ -58,13 +55,12 @@
 <th>Poster</th><th></th>
 </tr></thead><tbody>';
 $msg2="";
-                                  if(isset($_POST['search']))
+                  if(isset($_POST['search']))
 								  {
 
 									  $input=$_POST['input'];
-									 $sql2="select * from movies2 where Titull_film='$input' or Id_film='$input'";
-	                                 $result=mysqli_query($con,$sql2);
-									    if(!$result)
+										$search_film=$film->getMovieByTitle($input);
+									  /*  if(!$result)
 									 echo '<script>alert("ka error")</script>';
 
 									 $row2=mysqli_fetch_array($result);
@@ -76,31 +72,30 @@ $msg2="";
 								 $kasti=$row2['Kasti'];
 								 $desc=$row2['Pershkrim'];
 								 $regj=$row2['Regjisori'];
-								 $img=$row2['Imazhi_film'];
-
-			$msg2='<tr style="color:blue;"><td>'.$Id.'</td><td style="width:20px">'.$Emri.'</td><td>'.$rdate.'</td><td>'.$koha.'</td><td>'.$zhanri.'</td><td>'.$kasti.'</td>
-          <td>'.$desc.'</td><td>'.$regj.'</td><td><img style="width:60px;height:75px;" src="data:image/jpeg;base64,'.base64_encode($img).' alt="poster"></img></td><td><a href="admin_mlist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
-		  <td><a href="admin_addmovie.php?editID='.$Id.'"><button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button></td>
+								 $img=$row2['Imazhi_film'];*/
+    if($search_film!=null){
+			    $msg2='<tr style="color:blue;"><td>'.$search_film->filmId.'</td><td style="width:20px">'.$search_film->titulli.'</td><td>'.$search_film->data.'</td><td>'.$search_film->koha.'</td><td>'.$search_film->zhanri.'</td><td>'.$search_film->kasti.'</td>
+          <td>'.$search_film->desc.'</td><td>'.$search_film->regj.'</td><td><img style="width:60px;height:75px;" src="data:image/jpeg;base64,'.base64_encode($search_film->imazh).' alt="poster"></img></td><td><a href="admin_mlist.php?deleteID='.$search_film->filmId.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
+		  <td><a href="admin_addmovie.php?editID='.$search_film->filmId.'"><button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button></td>
 		  </tr>';
-								  if($Emri=="")
+								  if(titulli=="")
 								  $msg2="";
+        }
+			}
+                $msg.=$msg2;
+								$filmat=$film->getAllMovies();
+							 $nr_filmave=count($filmat);
 
-								  }
-                                  $msg.=$msg2;
-                                 $sql=$film->runQuery("select * from movies2");
-	                             $sql->execute();
-								 if($sql->rowCount() > 0){
-								 while($row=$sql->fetch(PDO::FETCH_ASSOC))
-								 {
-								  $Id=$row['Id_film'];
-								 $Emri=$row['Titull_film'];
-								 $rdate=$row['Data_fillimit'];
-								 $koha=$row['Kohezgjatja'];
-								 $zhanri=$row['Zhanri'];
-								 $kasti=$row['Kasti'];
-								 $desc=$row['Pershkrim'];
-								 $regj=$row['Regjisori'];
-								 $img=$row['Imazhi_film'];
+								for($i=0;$i<$nr_filmave;$i++){
+								  $Id=$filmat[$i]['Id_film'];
+								 $Emri=$filmat[$i]['Titull_film'];
+								 $rdate=$filmat[$i]['Data_fillimit'];
+								 $koha=$filmat[$i]['Kohezgjatja'];
+								 $zhanri=$filmat[$i]['Zhanri'];
+								 $kasti=$filmat[$i]['Kasti'];
+								 $desc=$filmat[$i]['Pershkrim'];
+								 $regj=$filmat[$i]['Regjisori'];
+								 $img=$filmat[$i]['Imazhi_film'];
 
 			$msg.='<tr><td>'.$Id.'</td><td style="width:20px">'.$Emri.'</td><td>'.$rdate.'</td><td>'.$koha.'</td><td>'.$zhanri.'</td><td>'.$kasti.'</td>
           <td>'.$desc.'</td><td>'.$regj.'</td><td><img style="width:60px;height:75px;" src="data:image/jpeg;base64,'.base64_encode($img).' alt="poster"></img>
@@ -110,16 +105,16 @@ $msg2="";
 
 
 								 }
-								}
+
 								$msg.="</tbody></table>";
 								 echo $msg;
 								 ?>
 						    </div>
 						</div>
-         </div>
+
 
     </div>
-
+</div>
 	<div id="footer">
 		<div>
 			<p>

@@ -156,7 +156,12 @@ return $stmt;
     public function getUserByUsername($username){
       $stmt=$this->conn->prepare("SELECT * FROM users2 WHERE username='$username'");
       $stmt->execute();
-      return $stmt;
+      if($stmt->fetch())
+      return true;
+      else {
+        return false;
+      }
+
     }
 
     public function getAllUsers(){

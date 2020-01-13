@@ -6,6 +6,13 @@ class Movie {
     private $conn;
     public $filmId;
     public $titulli;
+    public $data;
+    public $koha;
+    public $zhanri;
+    public $kasti;
+    public $desc;
+    public $regj;
+    public $url;
     public $imazh;
     // Constructor
     public function __construct(){
@@ -73,8 +80,6 @@ class Movie {
 		//else
           //echo '<script>alert("NUk ka gabim sql")</script>';
     }
-
-
 
     // Delete
     public function delete($id){
@@ -159,6 +164,28 @@ class Movie {
         $stmt->execute();
         $row=$stmt->fetchAll();
         return $row;
+    }
+
+    public function getMovieByTitle($titulli){
+      $stmt=$this->conn->prepare("SELECT * FROM movies2 WHERE Titull_film='$titulli'");
+      $stmt->execute();
+      if($row=$stmt->fetch()){
+        $this->filmId=$row['Id_film'];
+        $this->titulli=$row['Titull_film'];
+        $this->data=$row['Data_fillimit'];
+        $this->koha=$row['Kohezgjatja'];;
+        $this->zhanri=$row['Zhanri'];
+        $this->kasti=$row['Kasti'];
+        $this->desc=$row['Pershkrim'];
+        $this->regj=$row['Regjisori'];
+        $this->url=$row['TrailerUrl'];
+        $this->imazh=$row['Imazhi_film'];
+       return $this;
+      }
+      else {
+        echo '<script type="text/javascript">alert("This user does not exist !")</script>';
+        return null;
+      }
     }
 
 }

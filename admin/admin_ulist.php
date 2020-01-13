@@ -66,21 +66,6 @@
 										$searched_user=new User();
 										$searched_user=$user->getUserByName($search_input);
 
-									 /*$input=$_POST['input'];
-									 $sql2="SELECT * from users2 WHERE Em_klient='$input' OR Id_klient='$input'";
-	                 $result=mysqli_query($con,$sql2);*/
-
-									   // if(!$result)
-									 //echo '<script>alert("ka error")</script>';
-									/* $row2=mysqli_fetch_array($result);
-								 $Id=$row2['Id_klient'];
-								 $Emri=$row2['Em_klient'];
-								 $username=$row2['username'];
-								 $tel=$row2['Nr_tel'];
-								 $email=$row2['Email'];
-								 $ditelindja=$row2['Ditelindja'];
-								 $adresa=$row2['Adresa'];
-								 $qyteti=$row2['Qyteti'];*/
       if($searched_user!=null){
 			$msg2='<tr style="color:blue;"><td>'.$searched_user->userId.'</td><td style="width:20px">'.$searched_user->emri.'</td><td>'.$searched_user->username.'</td><td>'.$searched_user->tel.'</td><td>'.$searched_user->email.'</td><td>'.$searched_user->ditelindja.'</td>
           <td>'.$searched_user->adresa.'</td><td>'.$searched_user->qyteti.'</td>
