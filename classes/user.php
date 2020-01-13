@@ -38,7 +38,28 @@ class User {
        return $this;
       }
       else {
-        echo '<script type="text/javascript">alert("Ka probleme ne sql")</script>';
+        echo '<script type="text/javascript">alert("This user does not exist !")</script>';
+        return null;
+      }
+    }
+    public function getUserByName($emri){
+      $stmt=$this->conn->prepare("select * from users2 where Em_klient='$emri'");
+      $stmt->execute();
+      if($row=$stmt->fetch()){
+        $this->username=$row['username'];
+        $this->password=$row['password'];
+        $this->userId=$row['Id_klient'];;
+        $this->emri=$row['Em_klient'];
+        $this->tel=$row['Nr_tel'];
+        $this->email=$row['Email'];
+        $this->ditelindja=$row['Ditelindja'];
+        $this->adresa=$row['Adresa'];
+        $this->qyteti=$row['Qyteti'];
+       return $this;
+      }
+      else {
+        echo '<script type="text/javascript">alert("This user does not exist !")</script>';
+        return null;
       }
     }
     // Execute queries SQL
@@ -138,6 +159,16 @@ return $stmt;
       $stmt=$this->conn->prepare("SELECT * FROM users2 WHERE username='$username'");
       $stmt->execute();
       return $stmt;
+    }
+
+    public function getAllUsers(){
+      $sql="SELECT * FROM users2";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      if(!$stmt)
+      echo '<script>alert("Ga gabim ne DB")</script>';
+      $row=$stmt->fetchAll();
+      return $row;
     }
 
 }
