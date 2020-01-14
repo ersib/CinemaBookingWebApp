@@ -60,7 +60,7 @@
                    </tr></thead><tbody>';
                $msg2="";
 
-										if(isset($_POST['search']))
+										if(isset($_POST['search']) && $_POST['input']!='')
 								  {
                     $search_input=$_POST['input'];
 										$searched_user=new User();

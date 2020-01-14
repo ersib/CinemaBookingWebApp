@@ -23,7 +23,7 @@
 <link href="bootstrap.css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="styleadmin3.css" type="text/css">
-	
+
 </head>
 <body>
 	<div id="header">
@@ -35,77 +35,68 @@
 		</div>
 	</div>
 	<div id="body" class="Adminboard">
-	    	   
+
 		<div class="panel panel-default" style="margin-bottom:0px;">
-                  
+
 						<div class="panel-heading" style="font-size:1.5em;">
                           Cinema Table
                         </div>
-						
+
 						<br>
-						
+
 						<a href="admin_addc.php" class="btn btn-info" style="margin-left:20px; text-decoration:none;"> + Add Cinema</a>
-                       <div style="left:630px;position:relative;"> 
+                       <div style="left:630px;position:relative;">
 					   <form method="post">
-					   <input type="text" name="input" placeholder="Search by name or id ..." /> 
+					   <input type="text" name="input" placeholder="Search by name ..." />
 					   <input type="submit" name="search" value="Search" class="btn btn-info"/>
 					   </form></div>
-					   
+
 						<div class="panel-body">
                             <div class="table-responsive">
 		                           <?php
-							
+
 							$msg='<table class="table table-striped table-bordered table-hover" style="width:600px;"><thead><tr>
 <th>#</th><th>Name</th><th>Adress</th><th>Phone Number</th>
 </tr></thead><tbody>';
 $msg2="";
-                                  if(isset($_POST['search'])) 
+                  if(isset($_POST['search'])&& $_POST['input']!='')
 								  {
-								       
+
 									  $input=$_POST['input'];
-									 $sql2="select * from cinema2 where Em_kinema='$input' or Id_kinema='$input'";
-	                                 $result=mysqli_query($con,$sql2); 
-									    if(!$result)
-									 echo '<script>alert("ka error")</script>';
-									 $row2=mysqli_fetch_array($result);
-									 $Id=$row2['Id_kinema'];
-								 $cemri=$row2['Em_kinema'];
-								 $adresa=$row2['Adresa'];
-								 $tel=$row2['Telefoni'];
-								
-								 
+									 $search_kinema=$kinema->getCinemaByName($input);
+									 $Id=$search_kinema->id;
+								   $cemri=$search_kinema->emri;
+								   $adresa=$search_kinema->adresa;
+								   $tel=$search_kinema->tel;
+
+
 			$msg2='<tr style="color:blue;"><td>'.$Id.'</td><td style="width:20px">'.$cemri.'</td><td>'.$adresa.'</td><td>'.$tel.'</td>
 		 <!-- <td><a href="#">Theaters list</a></td>-->
 		  <td><a href="admin_clist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /></a></td>
 		  <td><a href="admin_addc.php?editID='.$Id.'"><button class="btn btn-primary"><i class="fa fa-edit "></i>Edit</button></td>
-		 
+
 		  </tr>';
-								  if($cemri=="")
-								  $msg2="";
-								  
-								  }
-                                  $msg.=$msg2;
-                                 $sql=$kinema->runQuery("select * from cinema2");
-	                             $sql->execute();
-								 if($sql->rowCount() > 0){
-								 while($row=$sql->fetch(PDO::FETCH_ASSOC))
+             }
+                $msg.=$msg2;
+								$kinemate=$kinema->getAllCinemas();
+                $nr_kinemave=count($kinemate);
+
+								 for($i=0;$i<$nr_kinemave;$i++)
 								 {
-								 $Id=$row['Id_kinema'];
-								 $cemri=$row['Em_kinema'];
-								 $adresa=$row['Adresa'];
-								 $tel=$row['Telefoni'];
-								 
+								 $Id=$kinemate[$i]['Id_kinema'];
+								 $cemri=$kinemate[$i]['Em_kinema'];
+								 $adresa=$kinemate[$i]['Adresa'];
+								 $tel=$kinemate[$i]['Telefoni'];
+
 			$msg.='<tr><td>'.$Id.'</td><td>'.$cemri.'</td><td>'.$adresa.'</td><td>'.$tel.'</td>
         <!--  <td><a href="#">Theaters list</a></td>-->
 		  <td><a href="admin_clist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
 		  <td style="width:80px;"><a href="admin_addc.php?editID='.$Id.'"><button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button></td></tr>';
-								
-								 
 								 }
-								}
+
 								$msg.="</tbody></table>";
 								 echo $msg;
-								 ?>					
+								 ?>
 						    </div>
 						</div>
          </div>
@@ -124,4 +115,3 @@ $msg2="";
 	</div>
 </body>
 </html>
-

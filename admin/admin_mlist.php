@@ -6,9 +6,9 @@
 	if(isset($_GET['deleteID']))
 	{
          $fshiId=$_GET['deleteID'];
-		 if($fshiId != null){
-		 $film->delete($fshiId);
-	     echo '<script>window.alert("The movie is deleted !");</script>';
+		  if($fshiId != null){
+		    $film->delete($fshiId);
+	      echo '<script>window.alert("The movie is deleted !");</script>';
 		 }
 	}
 ?>
@@ -55,45 +55,31 @@
 <th>Poster</th><th></th>
 </tr></thead><tbody>';
 $msg2="";
-                  if(isset($_POST['search']))
+                  if(isset($_POST['search']) && $_POST['input']!='')
 								  {
 
 									  $input=$_POST['input'];
 										$search_film=$film->getMovieByTitle($input);
-									  /*  if(!$result)
-									 echo '<script>alert("ka error")</script>';
-
-									 $row2=mysqli_fetch_array($result);
-									 $Id=$row2['Id_film'];
-								 $Emri=$row2['Titull_film'];
-								 $rdate=$row2['Data_fillimit'];
-								 $koha=$row2['Kohezgjatja'];
-								 $zhanri=$row2['Zhanri'];
-								 $kasti=$row2['Kasti'];
-								 $desc=$row2['Pershkrim'];
-								 $regj=$row2['Regjisori'];
-								 $img=$row2['Imazhi_film'];*/
-    if($search_film!=null){
-			    $msg2='<tr style="color:blue;"><td>'.$search_film->filmId.'</td><td style="width:20px">'.$search_film->titulli.'</td><td>'.$search_film->data.'</td><td>'.$search_film->koha.'</td><td>'.$search_film->zhanri.'</td><td>'.$search_film->kasti.'</td>
-          <td>'.$search_film->desc.'</td><td>'.$search_film->regj.'</td><td><img style="width:60px;height:75px;" src="data:image/jpeg;base64,'.base64_encode($search_film->imazh).' alt="poster"></img></td><td><a href="admin_mlist.php?deleteID='.$search_film->filmId.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
-		  <td><a href="admin_addmovie.php?editID='.$search_film->filmId.'"><button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button></td>
-		  </tr>';
-								  if(titulli=="")
+                 if($search_film!=null){
+									  $msg2='<tr style="color:blue;"><td>'.$search_film->filmId.'</td><td style="width:20px">'.$search_film->titulli.'</td><td>'.$search_film->data.'</td><td>'.$search_film->koha.'</td><td>'.$search_film->zhanri.'</td><td>'.$search_film->kasti.'</td>
+           <td>'.$search_film->desc.'</td><td>'.$search_film->regj.'</td><td><img style="width:60px;height:75px;" src="data:image/jpeg;base64,'.base64_encode($search_film->imazh).' alt="poster"></img></td><td><a href="admin_mlist.php?deleteID='.$search_film->filmId.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
+		       <td><a href="admin_addmovie.php?editID='.$search_film->filmId.'"><button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button></td></tr>';
+								  if($input=="")
 								  $msg2="";
-        }
-			}
+                  }
+			         }
                 $msg.=$msg2;
 								$filmat=$film->getAllMovies();
-							 $nr_filmave=count($filmat);
+							  $nr_filmave=count($filmat);
 
 								for($i=0;$i<$nr_filmave;$i++){
 								  $Id=$filmat[$i]['Id_film'];
-								 $Emri=$filmat[$i]['Titull_film'];
-								 $rdate=$filmat[$i]['Data_fillimit'];
-								 $koha=$filmat[$i]['Kohezgjatja'];
-								 $zhanri=$filmat[$i]['Zhanri'];
-								 $kasti=$filmat[$i]['Kasti'];
-								 $desc=$filmat[$i]['Pershkrim'];
+								  $Emri=$filmat[$i]['Titull_film'];
+								  $rdate=$filmat[$i]['Data_fillimit'];
+								  $koha=$filmat[$i]['Kohezgjatja'];
+								  $zhanri=$filmat[$i]['Zhanri'];
+								  $kasti=$filmat[$i]['Kasti'];
+								  $desc=$filmat[$i]['Pershkrim'];
 								 $regj=$filmat[$i]['Regjisori'];
 								 $img=$filmat[$i]['Imazhi_film'];
 
@@ -102,8 +88,6 @@ $msg2="";
 		  </td><td><a href="admin_mlist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
 		  <td><a href="admin_addmovie.php?editID='.$Id.'"><button class="btn btn-primary"><i class="fa fa-edit "></i> Edit</button></td>
 		  </tr>';
-
-
 								 }
 
 								$msg.="</tbody></table>";

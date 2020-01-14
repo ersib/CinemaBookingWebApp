@@ -14,6 +14,7 @@ class Movie {
     public $regj;
     public $url;
     public $imazh;
+    public $poster;
     // Constructor
     public function __construct(){
       $database = new Database();
@@ -96,7 +97,6 @@ class Movie {
     // Redirect URL method
     public function redirect($url)
 	{
-    //  header("Location: ".$url."");
 	  echo "<script type='text/javascript'> document.location = '$url'; </script>";
     }
     public function getAllMovies(){
@@ -112,9 +112,17 @@ class Movie {
       $stmt=$this->conn->prepare("select * from movies2 where Id_film='$id'");
       $stmt->execute();
       if($row=$stmt->fetch()){
+        $this->filmId=$row['Id_film'];
         $this->titulli=$row['Titull_film'];
+        $this->data=$row['Data_fillimit'];
+        $this->koha=$row['Kohezgjatja'];;
+        $this->zhanri=$row['Zhanri'];
+        $this->kasti=$row['Kasti'];
+        $this->desc=$row['Pershkrim'];
+        $this->regj=$row['Regjisori'];
+        $this->url=$row['TrailerUrl'];
         $this->imazh=$row['Imazhi_film'];
-        $this->filmId=$id;
+        $this->poster=$row['Imazh_wall'];
        return $this;
       }
       else {
@@ -183,7 +191,7 @@ class Movie {
        return $this;
       }
       else {
-        echo '<script type="text/javascript">alert("This user does not exist !")</script>';
+        echo '<script type="text/javascript">alert("This title does not exist !")</script>';
         return null;
       }
     }

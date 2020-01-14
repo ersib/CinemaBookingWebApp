@@ -6,6 +6,8 @@ class Cinema {
     private $conn;
     public $id;
     public $emri;
+    public $adresa;
+    public $tel;
     // Constructor
     public function __construct(){
       $database = new Database();
@@ -22,7 +24,41 @@ class Cinema {
         $row=$stmt->fetch();
         $this->id=$row['Id_kinema'];
         $this->emri=$row['Em_kinema'];
+        $this->adresa=$row['Adresa'];
+        $this->tel=$row['Telefoni'];
         return $this;
+    }
+    public function getCinemaByName($emri){
+        $sql=" SELECT *
+        FROM cinema2
+        WHERE Em_kinema='$emri'";
+        $stmt=$this->conn->prepare($sql);
+        $stmt->execute();
+        $row=$stmt->fetch();
+        $this->id=$row['Id_kinema'];
+        $this->emri=$row['Em_kinema'];
+        $this->adresa=$row['Adresa'];
+        $this->tel=$row['Telefoni'];
+        return $this;
+    }
+
+    public function getAllCinemas(){
+      $sql="SELECT * FROM cinema2";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      if(!$stmt)
+      echo '<script>alert("Ga gabim ne DB")</script>';
+      $row=$stmt->fetchAll();
+      return $row;
+    }
+    public function getAllTheaters(){
+      $sql="SELECT * FROM theaters2 WHERE JId_kinema='$this->id'";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      if(!$stmt)
+      echo '<script>alert("Ga gabim ne DB")</script>';
+      $row=$stmt->fetchAll();
+      return $row;
     }
 
     // Execute queries SQL
