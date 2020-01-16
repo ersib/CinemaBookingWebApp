@@ -23,7 +23,7 @@ class Booking {
     public function insert($dataRez,$NrVendeve,$Statusi,$IdKlient,$IdShfaqje){
         $stmt = $this->conn->prepare("INSERT INTO bookings2 (Data_rez,Nr_vendeve,Statusi,JId_klient,JId_show)
 		       VALUES('$dataRez','$NrVendeve','$Statusi','$IdKlient','$IdShfaqje')");
-
+           $this->updateSeatsOfShow($IdShfaqje,$NrVendeve);
 		$stmt->execute();
     return $stmt;
     }
@@ -102,6 +102,17 @@ class Booking {
       $expire="EXPIRED";
       $stmt = $this->conn->prepare("UPDATE bookings2 SET Statusi='$expire' WHERE Id_rezervim='$rezId'");
       $stmt->execute();
+      return $stmt;
+    }
+
+    public function updateSeatsOfShow($idshow,$seats){
+      $stmt = $this->conn->prepare("SELECT shows2.VendeRez from shows2 WHERE Id_shfaqje='$idshow'");
+      $stmt->execute();
+      $row=$stmt->fetch();
+      $old_seats=$row[VendeRez];
+      $new_seats=$old_seats+$seats;
+        $stmt = $this->conn->prepare("UPDATE shows2 SET VendeRez='$new_seats' WHERE Id_shfaqje='$idshow'");
+            $stmt->execute();
       return $stmt;
     }
 

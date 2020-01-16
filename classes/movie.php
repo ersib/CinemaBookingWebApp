@@ -1,6 +1,7 @@
 <?php
 //require_once('../dbconfig/config.php');
 require_once 'database.php';
+require_once 'shfaqje.php';
 
 class Movie {
     private $conn;
@@ -101,6 +102,18 @@ class Movie {
     }
     public function getAllMovies(){
       $sql="SELECT * FROM movies2";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      if(!$stmt)
+      echo '<script>alert("Ga gabim ne DB")</script>';
+      $row=$stmt->fetchAll();
+      return $row;
+    }
+    public function getAllMoviesWithShows(){
+      $shfaqje=new Shfaqje();
+      $shfaqje->updateStatusOfShows();
+      $free_seats='Free seats';
+      $sql="SELECT * FROM movies2 INNER JOIN shows2 ON shows2.JId_film=movies2.Id_film WHERE shows2.Status='$free_seats'";
       $stmt = $this->conn->prepare($sql);
       $stmt->execute();
       if(!$stmt)

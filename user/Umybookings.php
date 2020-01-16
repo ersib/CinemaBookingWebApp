@@ -19,8 +19,9 @@
 	if(isset($_GET['deletID']))
 	{
          $fshiId=$_GET['deletID'];
-				if($rezervim->delete())
+				if($rezervim->delete($fshiId))
 				 echo '<script>window.alert("U anullua rezervimi");</script>';
+				 $user->redirect('Umybookings.php');
 		     /*$sql="delete from bookings2 where Id_rezervim='$fshiId'";
 	       $result=mysqli_query($con,$sql);
 		 if($result)
@@ -108,62 +109,12 @@
 								<td>'.$lista_rez[$i]['Data_sh'].'</td><td>'.$lista_rez[$i]['Ora_sh'].'</td><td>'.$lista_rez[$i]['Em_kinema'].'</td>
 								<td>'.$lista_rez[$i]['Em_salla'].'</td><td>'.$lista_rez[$i]['Teknologjia'].'</td><td>'.$lista_rez[$i]['Nr_vendeve'].'</td>
 								<td>'.$lista_rez[$i]['Nr_vendeve']*$lista_rez[$i]['Cmimi'].'</td><td>'.$lista_rez[$i]['Statusi'].'</td><td>'.$lista_rez[$i]['Data_rez'].'</td>
-								<td><form action="" method="post"><input type="submit" class="butonadmin" name="submit" value="Cancel booking"
-								style="background-color:red;width:105px;"/>
-								<form>
-								</td></tr>';
+								<td><a href="Umybookings.php?deletID='.$lista_rez[$i]['Id_rezervim'].'"><input type="submit" class="butonadmin" name="submit" value="Remove booking"
+								style="background-color:red;width:105px;"/></a></td></tr>';
 							}
 							$msg.="</tbody></table>";
 							echo $msg;
-/*
-								 $sql="select * from bookings2 where JId_klient='$Id'";
-                             	 $result=mysqli_query($con,$sql);
-	                             while($row=mysqli_fetch_array($result))
-								 {
-								$Id=$row['Id_rezervim'];
-								 $bSeats=$row['Nr_vendeve'];
-								 $bStatus=$row['Statusi'];
-								 $showid=$row['JId_show'];
 
-								 $sql2="select * from shows2 where Id_shfaqje='$showid'";
-                             	 $result2=mysqli_query($con,$sql2);
-	                             $row2=mysqli_fetch_array($result2);
-								 $idfilm=$row2['JId_film'];
-								 $idsalle=$row2['JId_salla'];
-
-								 $data=$row2['Data_sh'];
-								 $ora=$row2['Ora_sh'];
-								 $cmimi=$row2['Cmimi'];
-								 $totali=$cmimi*$bSeats;
-								 $sql2="select * from movies2 where Id_film='$idfilm'";
-                             	 $result2=mysqli_query($con,$sql2);
-	                             $row2=mysqli_fetch_array($result2);
-
-								 $Emfilm=$row2['Titull_film'];
-
-								 $sql2="select * from theaters2 where Id_salla='$idsalle'";
-                             	 $result2=mysqli_query($con,$sql2);
-	                             $row2=mysqli_fetch_array($result2);
-								 $Emsalla=$row2['Em_salla'];
-								 $tech=$row2['Teknologjia'];
-								 $kineid=$row2['JId_kinema'];
-								 $sql2="select * from cinema2 where Id_kinema='$kineid'";
-                             	 $result2=mysqli_query($con,$sql2);
-	                             $row2=mysqli_fetch_array($result2);
-								 $Emkinema=$row2['Em_kinema'];
-
-
-			$msg.='<tr><td>'.$Id.'</td><td style="width:20px">'.$Emfilm.'</td><td>'.$data.'</td><td>'.$ora.'</td><td>'.$Emkinema.'</td><td>'.$Emsalla.'</td>
-          <td>'.$tech.'</td><td>'. $bSeats.'</td><td>'.$totali.'</td><td>'.$bStatus.'</td><td>
-		  <form action="" method="post"><input type="submit" class="butonadmin" name="submit" value="Cancel booking"
-		  style="background-color:red;width:105px;"/>
-		  <form>
-		  </td></tr>';
-								// echo '<script>window.alert("<td>'.$Id.'</td><td>'.$Emfilm.'</td><td>'.$data.'</td><td>'.$ora.'</td>");</script>';
-
-								 }
-								 $msg.="</tbody></table>";
-								 echo $msg;*/
 							?>
 
                             </div>
@@ -190,10 +141,10 @@
 </body>
 </html>
 <?php
-if(isset($_POST['submit'])){
+/*if(isset($_POST['submit'])){
 	echo '<script>
 	window.location.href="Umybookings.php?deletID='.$Id.'"
 	</script>';
-}
+}*/
 
 ?>

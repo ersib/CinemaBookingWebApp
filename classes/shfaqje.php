@@ -54,6 +54,7 @@ class Shfaqje {
         $this->Id_film=$row['JId_film'];
         return $this;
     }
+
     public function soldOut(){
       $sql=" SELECT shows2.VendeRez , theaters2.Kapaciteti
       FROM shows2
@@ -68,6 +69,75 @@ class Shfaqje {
       else {
         return false;
       }
+    }
+    public function updateStatusOfShows(){
+      $sql=" SELECT shows2.VendeRez , theaters2.Kapaciteti , shows2.Id_shfaqje , shows2.Data_sh
+      FROM shows2
+      INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla";
+      $stmt=$this->conn->prepare($sql);
+      $stmt->execute();
+      $row=$stmt->fetchAll();
+      $data_sot=date("Y-m-d");
+      for($i=0;$i<count($row);$i++){
+          $id=$row[$i]['Id_shfaqje'];
+        if($row[$i]['Data_sh']<$data_sot){
+          $sql=" UPDATE shows2 SET Status='Old show'
+          WHERE Id_shfaqje='$id'";
+          $stmt=$this->conn->prepare($sql);
+          $stmt->execute();
+        }
+        else if($row[$i]['VendeRez']>=$row[$i]['Kapaciteti']){
+        $sql=" UPDATE shows2 SET Status='Sold out'
+        WHERE Id_shfaqje='$id'";
+        $stmt=$this->conn->prepare($sql);
+        $stmt->execute();
+      }
+       else {
+         $sql=" UPDATE shows2 SET Status='Free seats'
+         WHERE Id_shfaqje='$id'";
+         $stmt=$this->conn->prepare($sql);
+         $stmt->execute();
+       }
+     }
+   }
+    /*public function IsSoldOut($id){
+      $sql=" SELECT shows2.VendeRez , theaters2.Kapaciteti
+      FROM shows2
+      INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
+      WHERE shows2.Id_shfaqje='$id'";
+      $stmt=$this->conn->prepare($sql);
+      $stmt->execute();
+      $row=$stmt->fetch();
+      if($row['VendeRez']>=$row['Kapaciteti']){
+      return true;
+      }
+      else {
+        return false;
+      }
+    }*/
+
+    public function getAllShows(){
+      $this->updateStatusOfShows();
+      $sql="SELECT shows2.Id_shfaqje,
+       shows2.Data_sh,
+       shows2.Ora_sh ,
+       shows2.Cmimi,
+       shows2.VendeRez,
+       movies2.Titull_film,
+       cinema2.Em_kinema,
+       theaters2.Em_salla,
+              shows2.Status
+         FROM shows2
+                           INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
+                           INNER JOIN movies2 ON movies2.Id_film=shows2.JId_film
+         INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema";
+
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      if(!$stmt)
+      echo '<script>alert("Ga gabim ne DB")</script>';
+      $row=$stmt->fetchAll();
+      return $row;
     }
     // Execute queries SQL
     public function runQuery($sql){

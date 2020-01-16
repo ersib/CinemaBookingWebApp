@@ -23,7 +23,7 @@
 <link href="bootstrap.css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="styleadmin3.css" type="text/css">
-	
+
 </head>
 <body>
 	<div id="header">
@@ -35,110 +35,115 @@
 		</div>
 	</div>
 	<div id="body" class="Adminboard">
-	    	   
+
 		<div class="panel panel-default" style="margin-bottom:0px;">
-                  
+
 						<div class="panel-heading" style="font-size:1.5em;">
                           Shows Table
                         </div>
-						
+
 						<br>
-						
+
 						<a href="admin_addsh.php" class="btn btn-info" style="margin-left:20px; text-decoration:none;"> + Add Show</a>
-                       <div style="left:630px;position:relative;"> 
+                       <div style="left:630px;position:relative;">
 					   <form method="post">
-					   <input type="text" name="input" placeholder="Search by movie title ..." /> 
+					   <input type="text" name="input" placeholder="Search by movie title ..." />
 					   <input type="submit" name="search" value="Search" class="btn btn-info"/>
 					   </form></div>
-					   
+
 						<div class="panel-body">
                             <div class="table-responsive">
 		                           <?php
-							
+
 							$msg='<table class="table table-striped table-bordered table-hover"><thead><tr>
 <th>#</th><th>Movie</th><th>Show Date</th><th>Show Time</th><th>Theater</th><th>Cinema</th><th>Price</th><th>Booked seats</th>
 <th>Status</th>
 </tr></thead><tbody>';
 $msg2="";
-                                  if(isset($_POST['search'])) 
+                  if(isset($_POST['search']))
 								  {
-								       
+
 									  $input=$_POST['input'];
-									 $sql2="SELECT shows2.Id_shfaqje,shows2.Data_sh, shows2.Ora_sh ,shows2.Cmimi,shows2.VendeRez,
+									  $sql2="SELECT shows2.Id_shfaqje,shows2.Data_sh, shows2.Ora_sh ,shows2.Cmimi,shows2.VendeRez,
                                      movies2.Titull_film,cinema2.Em_kinema,theaters2.Em_salla
-									 FROM shows2
+									                    FROM shows2
                                      INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
                                      INNER JOIN movies2 ON movies2.Id_film=shows2.JId_film
 									 INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
 									 WHERE movies2.Titull_film='$input'";
-	                                 $result=mysqli_query($con,$sql2); 
-									    if(!$result)
+	                 $result=mysqli_query($con,$sql2);
+
+									 if(!$result)
 									 echo '<script>alert("ka error")</script>';
-								 
+
 									while( $row2=mysqli_fetch_array($result)){
 									 $Id=$row2[0];
-								 $Emri=$row2[5];
+								   $Emri=$row2[5];
 								 $datash=$row2[1];
 								 $orash=$row2[2];
 								 $cmimi=$row2[3];
 								 $vendeR=$row2[4];
 								 $kinema=$row2[6];
 								 $salla=$row2[7];
-								 
+
 			$msg2.='<tr style="color:blue;"><td>'.$Id.'</td><td style="width:20px">'.$Emri.'</td><td>'.$datash.'</td><td>'.$orash.'</td><td>'.$salla.'</td><td>'.$kinema.'</td>
           <td>'.$cmimi.'</td><td>'.$vendeR.'</td><td></td>
-		  
+
 		  <td><a href="admin_shlist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
-		  
+
 		  </tr>';
 									}
 								  if($Emri=="")
 								  $msg2="";
-								  
+
 								  }
-                                  $msg.=$msg2;
-                                 $sql="SELECT shows2.Id_shfaqje,
-								 shows2.Data_sh, 
+
+									$msg.=$msg2;
+									/*
+                $sql="SELECT shows2.Id_shfaqje,
+								 shows2.Data_sh,
 								 shows2.Ora_sh ,
 								 shows2.Cmimi,
 								 shows2.VendeRez,
                                  movies2.Titull_film,
 								 cinema2.Em_kinema,
-								 theaters2.Em_salla									
+								 theaters2.Em_salla
 									 FROM shows2
                                      INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
                                      INNER JOIN movies2 ON movies2.Id_film=shows2.JId_film
 									 INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
-									 
+
 									 ";
 	                             $res=mysqli_query($con,$sql);
-								 if(!$res) echo '<script>alert("Ka gabim")</script>';
+								 if(!$res) echo '<script>alert("Ka gabim")</script>';*/
 								 //else
 									// echo '<script>alert("eshte ne rregull")</script>';
-								 if(mysqli_num_rows($res)){
-								 while($row=mysqli_fetch_array($res))
+
+								// if(mysqli_num_rows($res)){
+								$shfaqjet=$shfaqje->getAllShows();
+								$nr_shfaqjeve=count($shfaqjet);
+
+                 for($i=0;$i<$nr_shfaqjeve;$i++)
 								 {
-								 $Id=$row[0];
-								 $Emri=$row[5];
-								 $datash=$row[1];
-								 $orash=$row[2];
-								 $cmimi=$row[3];
-								 $vendeR=$row[4];
-								 $kinema=$row[6];
-								 $salla=$row[7];
-								 
+								 $Id=$shfaqjet[$i][0];
+								 $Emri=$shfaqjet[$i][5];
+								 $datash=$shfaqjet[$i][1];
+								 $orash=$shfaqjet[$i][2];
+								 $cmimi=$shfaqjet[$i][3];
+								 $vendeR=$shfaqjet[$i][4];
+								 $kinema=$shfaqjet[$i][6];
+								 $salla=$shfaqjet[$i][7];
+								 $status=$shfaqjet[$i][8];
+
+
 			$msg.='<tr><td>'.$Id.'</td><td style="width:20px">'.$Emri.'</td><td>'.$datash.'</td><td>'.$orash.'</td><td>'.$salla.'</td><td>'.$kinema.'</td>
-          <td>'.$cmimi.'</td><td>'.$vendeR.'</td>  <td></td><td><a href="admin_ulist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
-		
-		  
-		  </tr>';
-								
-								 
+             <td>'.$cmimi.'</td><td>'.$vendeR.'</td>  <td>'.$status.'</td><td><a href="admin_ulist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
+             </tr>';
 								 }
-								}
+							//	}
 								$msg.="</tbody></table>";
 								 echo $msg;
-								 ?>					
+								 ?>
 						    </div>
 						</div>
          </div>
@@ -157,4 +162,3 @@ $msg2="";
 	</div>
 </body>
 </html>
-

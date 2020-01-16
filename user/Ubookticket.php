@@ -36,102 +36,38 @@
 	<div id="body" class="ticket-info">
 		<h2 style="text-align:center;">All movies</h2>
 				<hr style="border:1px solid #4F4F4F;"/>
-		<!--<br/>
-		<ul>
-		<li><span class="mbooked" >
-		   <p >Movie 1<p>
-		 <div class="prv1"><img src="images/ballet-dancer3.jpg" class="fotobooked"></img></div>
-		 <div class="prv2"><a href="bookticket.html">Book Ticket</div>
-		</span></li>
-		<li><span class="mbooked">
-		   <p >Movie 2<p>
-		 <div class="prv1"><img src="images/baby-with-dog.jpg" class="fotobooked"></img></div>
-		 <div class="prv2"><a href="bookticket.html">Book Ticket</div>
-		</span></li>
-		<li><span class="mbooked">
-		   <p >Movie 3<p>
-		 <div class="prv1"><img src="castle2.jpg" class="fotobooked"></img></div>
-		 <div class="prv2"><a href="bookticket.html">Book Ticket</div>
-		</span></li>
-		</ul>-->
 
 
 
-		<!--<div class="container_book">-->
+				<?php
+				require_once '../classes/movie.php';
+				$film=new Movie();
+				$filmat=$film->getAllMoviesWithShows();
+				$nr_filmave=count($filmat);
+				if($nr_filmave==0){
+					echo '<script>alert("There are no shows avaible !")</script>';
+					$film->redirect('Uboard.php');
+				}
+				       $msg='<div class="container_book">';
+		            for($i=0;$i<$nr_filmave;$i++)
+		            {
+
+		                  $msg.= '<div class="movielist"><div class="titleM"><p>'.$filmat[$i]['Titull_film'].'</p></div>
+				<div class="photoM"><img src="data:image/jpeg;base64,'.base64_encode($filmat[$i]['Imazhi_film']).' alt="poster filmi"></img></div>
+
+				   <div class="buton">
+				  <input type="button" name="buton" value="Book ticket"/></div>
+					</div>';
+
+					   }
+				$msg.='</div>';
+
+		echo $msg;
+				?>
 
 
-		<?php
-		$conn=mysqli_connect("localhost","root","","cinemadb");
-		$msg='<div class="container_book">';
-		$sql="select * from movies2";
-        if(mysqli_query($conn,$sql))
-        {
-            $res=mysqli_query($conn,$sql);
-            while($row=mysqli_fetch_array($res))
-            {
-
-                     $mname=$row['Titull_film'];
-                    $mimage=$row['Imazhi_film'];
-
-                  $msg.= '<div class="movielist"><div class="titleM"><p>'.$row['Titull_film'].'</p></div>
-		<div class="photoM"><img src="data:image/jpeg;base64,'.base64_encode($row['Imazhi_film']).' alt="poster filmi"></img></div>
-
-		   <div class="buton">
-		  <a href="bookTicket.php?filmId='.$row['Id_film'].'"><input type="button" name="buton" value="Book ticket"/></a></div></div>';
-
-			}
 
 
-      }
-        else{
-            echo '<script type="text/javascript"> alert("Error !")</script>';
-		}
-		$msg.='</div>';
-
-echo $msg;
-		?>
-
-	 <!--
-	    <div class="movielist">
-	       <div class="titleM"><p>Movie 1</p></div>
-		   <div class="photoM"><img src="images/baby-with-dog.jpg"></img></div>
-
-		   <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>
-
-		<div class="movielist">
-	       <div class="titleM"><p>Movie 2</p></div>
-		   <div class="photoM"><img src="images/ballet-dancer.jpg"></img></div>
-
-			  <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>
-
-		<div class="movielist">
-	      <div class="titleM"><p>Movie 3</p></div>
-		  <div class="photoM"><img src="images/soldiers.jpg"></img></div>
-
-		    <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>
-
-		<div class="movielist">
-	      <div class="titleM"><p>Movie 4</p></div>
-		  <div class="photoM"><img src="images/surfer.jpg"></img></div>
-	      <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>
-
-		<div class="movielist">
-	      <div class="titleM"><p>Movie 5</p></div>
-		  <div class="photoM"><img src="images/trainor.jpg"></img></div>
-	     <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>-->
-
-
-	   <!-- </div>-->
 
 
 

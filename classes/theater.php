@@ -7,6 +7,7 @@ class Theater {
     public $id;
     public $emri;
     public $tech;
+    public $kapaciteti;
     public $Id_kinema;
     // Constructor
     public function __construct(){
@@ -14,6 +15,7 @@ class Theater {
       $db = $database->dbConnection();
       $this->conn = $db;
     }
+
     public function getTheaterById($s_id){
         $sql=" SELECT *
         FROM theaters2
@@ -24,6 +26,7 @@ class Theater {
         $this->id=$row['Id_salla'];
         $this->emri=$row['Em_salla'];
         $this->tech=$row['Teknologjia'];
+        $this->kapaciteti=$row['Kapaciteti'];
         $this->Id_kinema=$row['JId_kinema'];
         return $this;
     }

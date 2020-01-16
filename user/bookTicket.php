@@ -5,6 +5,7 @@
 	require '../classes/movie.php';
 	require '../classes/cinema.php';
 	require '../classes/shfaqje.php';
+	require '../classes/theater.php';
 	//echo '<script>alert("'.$_SESSION['iduser'].'")</script>';
 
 	 if(isset($_GET['filmId']))
@@ -86,8 +87,10 @@
 				<br><div class="book-cinema" style="position:relative;left:12%;">
 
 				<?php
+				//$kinema_selected=false;
 				if(isset($_POST['submit']))
 				{
+
 					?>
 					      <script type="text/javascript">
 								   var divK=document.getElementById("div1");
@@ -95,8 +98,10 @@
 							  </script>
 
 				<?php
+
 					if(isset($_POST['cinema']))
 					{
+						//$kinema_selected=true;
 					   $cid=$_POST['cinema'];
 						 $salla_vlefshme=$film->availableTheaters($cid);
 						 $msg='<label>Select the theater:</label>
@@ -143,9 +148,13 @@
 					 $Ora=$_POST['ora'];
 
 					  $Data=$_SESSION['data'];
-					  $idSalla=$_SESSION["idSalla"];
+					  $idSalla=$_SESSION['idSalla'];
+
 						$shfaqja_kerkuar=new Shfaqje();
             $shfaqja_kerkuar=$shfaqja_kerkuar->getShow($idSalla,$Data,$Ora,$film->filmId);
+						$salla_kerkuar=new Theater();
+						$salla_kerkuar=$salla_kerkuar->getTheaterById($idSalla);
+						$vendet_mbetuara=$salla_kerkuar->kapaciteti-$shfaqja_kerkuar->vendet_rez;
 
 						if($shfaqja_kerkuar->soldOut()){
 							echo '<script>alert("Per kete shfaqje jane rezervuar te gjitha vendet !")</script>';
@@ -154,7 +163,7 @@
 					   $_SESSION['Id_shfaqje']=$shfaqja_kerkuar->id;
 
 					   $div4='Price :'.$shfaqja_kerkuar->cmimi.'<br><br><label>Enter the number of tickets :</label><input type="number"
-						 style="width:35px;"name="biletat">';
+						 style="width:35px;"name="biletat" min="1" max="'.$vendet_mbetuara.'">';
              echo $div4;
 					}
 
@@ -172,8 +181,8 @@
 
             <div class="book-confirm">
 							<input style="position:relative;left:30%;" class="butonadmin"  type="submit" name="submit" id="submit" value="Submit" />
-              <input style="position:relative;left:30%;background-color:red;" class="butonadmin"  type="submit" name="submit"
-               id="submit" value="Restart" onclick="window.location.href='booking.php?filmId=<?php echo $_SESSION['filmId']?>'" />
+              <input style="position:relative;left:30%;background-color:red;" class="butonadmin"  type="reset" name="reset"
+               id="submit" value="Restart" onclick="window.location.href='bookTicket.php?filmId=<?php echo $_SESSION['filmId']?>'" />
             </div>
     </form>
 			<br>
