@@ -37,6 +37,19 @@ class Shfaqje {
         return $this;
     }
 
+    public function isValidShowTime($DitaSH,$KohaSH,$SallaID){
+      $sql="SELECT * FROM shows2 WHERE JId_salla=:sid and Ora_sh=:ora and Data_sh=:dita";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindparam(":sid", $SallaID);
+      $stmt->bindparam(":ora", $KohaSH);
+      $stmt->bindparam(":dita", $DitaSH);
+      $stmt->execute();
+      if($stmt->fetch())
+      return false;
+      else
+      return true;
+    }
+
     public function getShow($s_id,$data,$ora,$fid){
         $sql=" SELECT *
         FROM shows2
@@ -70,6 +83,7 @@ class Shfaqje {
         return false;
       }
     }
+
     public function updateStatusOfShows(){
       $sql=" SELECT shows2.VendeRez , theaters2.Kapaciteti , shows2.Id_shfaqje , shows2.Data_sh
       FROM shows2
@@ -100,21 +114,30 @@ class Shfaqje {
        }
      }
    }
-    /*public function IsSoldOut($id){
-      $sql=" SELECT shows2.VendeRez , theaters2.Kapaciteti
-      FROM shows2
+   public function getAllShowsByMovie($title){
+     $sql="SELECT shows2.Id_shfaqje,
+      shows2.Data_sh,
+      shows2.Ora_sh ,
+      shows2.Cmimi,
+      shows2.VendeRez,
+      movies2.Titull_film,
+      cinema2.Em_kinema,
+      theaters2.Em_salla,
+      shows2.Status
+        FROM shows2
       INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
-      WHERE shows2.Id_shfaqje='$id'";
-      $stmt=$this->conn->prepare($sql);
-      $stmt->execute();
-      $row=$stmt->fetch();
-      if($row['VendeRez']>=$row['Kapaciteti']){
-      return true;
-      }
-      else {
-        return false;
-      }
-    }*/
+      INNER JOIN movies2 ON movies2.Id_film=shows2.JId_film
+      INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
+      WHERE movies2.Titull_film=:titull";
+
+     $stmt = $this->conn->prepare($sql);
+     $stmt->bindparam(":titull",$title);
+     $stmt->execute();
+     if(!$stmt)
+     echo '<script>alert("Ga gabim ne DB")</script>';
+     $row=$stmt->fetchAll();
+     return $row;
+   }
 
     public function getAllShows(){
       $this->updateStatusOfShows();
@@ -146,21 +169,17 @@ class Shfaqje {
     }
 
     // Insert
-    public function insert($name,$nseats,$tech,$idKinema){
-        $stmt = $this->conn->prepare("INSERT INTO theaters2 (Em_salla,Kapaciteti,Teknologjia,JId_kinema)
-		VALUES('$name','$nseats', '$tech','$idKinema')");
-		$stmt->execute();
+    public function insert($DitaSH,$KohaSH,$cmimi,$vendeR,$status,$SallaID,$filmID){
+         $sql="insert into shows2 values('','$DitaSH','$KohaSH','$cmimi','$vendeR','$status','$SallaID','$filmID')";
+         $stmt=$this->conn->prepare($sql);
+         $stmt->execute();
+         return $stmt;
     }
 
 	// Update
     public function update($name,$nseats,$tech,$idKinema,$id){
-
-        $stmt = $this->conn->prepare("UPDATE theaters2 SET Em_salla='$name',Kapaciteti='$nseats',Teknologjia='$tech'
-		,JId_kinema='$idKinema'
-        WHERE Id_salla='$id'");
-
-		$stmt->execute();
-
+    $stmt = $this->conn->prepare("UPDATE theaters2 SET Em_salla='$name',Kapaciteti='$nseats',Teknologjia='$tech',JId_kinema='$idKinema'WHERE Id_salla='$id'");
+    $stmt->execute();
     }
 
 
@@ -168,7 +187,7 @@ class Shfaqje {
     // Delete
     public function delete($id){
       try{
-        $stmt = $this->conn->prepare("DELETE FROM theaters2 WHERE Id_salla = :id");
+        $stmt = $this->conn->prepare("DELETE FROM shows2 WHERE Id_shfaqje = :id");
         $stmt->bindparam(":id", $id);
         $stmt->execute();
         return $stmt;
@@ -178,9 +197,7 @@ class Shfaqje {
     }
 
     // Redirect URL method
-    public function redirect($url)
-	 {
-    //  header("Location: ".$url."");
+    public function redirect($url){
 	  echo "<script type='text/javascript'> document.location = '$url'; </script>";
     }
 }

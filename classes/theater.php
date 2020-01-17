@@ -15,6 +15,15 @@ class Theater {
       $db = $database->dbConnection();
       $this->conn = $db;
     }
+    public function getAllTheatersByCinemId($cid){
+      $sql="SELECT * FROM theaters2 WHERE JId_kinema='$cid'";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      if(!$stmt)
+      echo '<script>alert("Ga gabim ne DB")</script>';
+      $row=$stmt->fetchAll();
+      return $row;
+    }
 
     public function getTheaterById($s_id){
         $sql=" SELECT *

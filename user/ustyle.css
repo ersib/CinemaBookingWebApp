@@ -6,7 +6,7 @@ html *
   font-family:font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;/* 'oswaldregular';*/
 	src: url('../fonts/oswald-webfont.eot');
 	src: url('../fonts/oswald-webfont.eot?#iefix') format('embedded-opentype'),  url('../fonts/oswald-webfont.woff') format('woff'),  url('../fonts/oswald-webfont.ttf') format('truetype'),  url('../fonts/oswald-webfont.svg#oswaldregular') format('svg');
-	
+
 	font-weight: normal;
 	font-style: normal;
 }
@@ -44,7 +44,7 @@ p a:hover {
 	background:url(../images/bg-header.png) repeat-x;
 	height:184px;
 	margin:15px 0 0;
-	
+
 }/*
 #header {
 		background:url(../images/bg-header.png) repeat-x;
@@ -146,7 +146,7 @@ p a:hover {
 	background:none #000;
 	margin-top:11px!important;
 	overflow:hidden;
-	
+
 }
 .top-barl{
 	height: 50px;
@@ -162,7 +162,7 @@ p a:hover {
    margin-bottom:5px;
 }
 
-#leftcolumn { 
+#leftcolumn {
  color: #333;
  background:#fceecb;
  margin: 0px 0px 0px 0px;
@@ -187,7 +187,7 @@ height:200px;
   text-decoration: none; /* Remove underline from links */
   border-top : 1px solid #e8dcaf;
   border-bottom : 1px solid #e8dcaf;
-  
+
 }
 
 .vertical-menu a:hover {
@@ -198,7 +198,7 @@ height:200px;
   background-color: #a99667; /* Add a green color to the "active/current" link */
   color: white;
 }
-#rightcolumn { 
+#rightcolumn {
  float: right;
  color: #333;
  border: 1px solid #ccc;
@@ -223,7 +223,20 @@ height:auto;
     border: 2px solid #e0dfdf;
 
 }
-
+.total{
+  width: 200px;
+  background-color: #fff;
+  height: 160px;
+  margin: 24px;
+  font-size: 1.5em;
+  font-family: serif;
+  display: inline;
+  float: left;
+  border: 2px;
+  border-style: solid;
+  padding: 10px;
+  border-color: #e0dfdf;
+}
 /*------------------------------------------------------------------------------------------------*/
 #body.Adminboard{
 	border:1px solid #4F4F4F;
@@ -304,7 +317,7 @@ a.logout{
 	color:white;
 }
 .book-title{
-	
+
     width: 150px;
     height: 30px;
     padding: 10px;
@@ -347,7 +360,7 @@ a.logout{
 	width:80px;
 	padding:2px;
 	color:white;
-	text-align:center;	
+	text-align:center;
 }
 .myaccount{
 	width:360px;
@@ -423,7 +436,7 @@ a.logout{
 	line-height:18px;
 	margin:18px 0 0;
 	width:auto;
-	
+
 }
 #footer div div p a {
 	color:#a5a5a5;

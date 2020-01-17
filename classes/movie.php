@@ -44,7 +44,6 @@ class Movie {
 	// Update
     public function update($movname,$movDate,$movTime,$movGenre, $movCast, $movDesc,$movDir,$movURL,$fp,$Wimg,$mid){
 
-    // echo '<script>alert("Po behet update")</script>';
 		  if($movDate!=null)
 		  {
 			  if($fp == null)
@@ -55,10 +54,8 @@ class Movie {
 				  $wall=" ";
 			  else
 				  $wall=", Imazh_wall='$Wimg'";
-        $stmt = $this->conn->prepare("UPDATE movies2
-		SET Titull_film='$movname',Data_fillimit='$movDate',Kohezgjatja='$movTime',
-	    Zhanri='$movGenre',Kasti='$movCast',Pershkrim='$movDesc',Regjisori='$movDir', TrailerUrl='$movURL'".$posteri."  ".$wall."
-		WHERE Id_film='$mid'");
+
+        $stmt = $this->conn->prepare("UPDATE movies2 SET Titull_film='$movname',Data_fillimit='$movDate',Kohezgjatja='$movTime',Zhanri='$movGenre',Kasti='$movCast',Pershkrim='$movDesc',Regjisori='$movDir', TrailerUrl='$movURL'".$posteri."  ".$wall." WHERE Id_film='$mid'");
 		  }
 		 else if($movDate==null){
 			 if($fp == null)
@@ -73,14 +70,10 @@ class Movie {
 		 ,Pershkrim='$movDesc',Regjisori='$movDir',TrailerUrl='$movURL' ".$posteri."  ".$wall."
 		 WHERE Id_film='$mid'");
 		 }
-
 		$result=$stmt->execute();
-
 		if(!$result)
 			echo '<script>alert("Ka gabim sql")</script>';
 
-		//else
-          //echo '<script>alert("NUk ka gabim sql")</script>';
     }
 
     // Delete
@@ -160,7 +153,7 @@ class Movie {
         $sql=" SELECT DISTINCT theaters2.Id_salla,theaters2.Em_salla,theaters2.Teknologjia
         FROM theaters2
         INNER JOIN shows2 ON theaters2.Id_salla=shows2.JId_salla
-        WHERE shows2.JId_film='$fid' AND theaters2.JId_kinema='$cid'";
+        WHERE shows2.JId_film='$fid' AND theaters2.JId_kinema='$cid' AND shows2.Status='Free seats";
         $stmt=$this->conn->prepare($sql);
         $stmt->execute();
         $row=$stmt->fetchAll();

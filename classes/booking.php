@@ -75,6 +75,46 @@ class Booking {
       $row=$stmt->fetchAll();
       return $row;
     }
+    public function getExpired($userid){
+
+      $this->updateBookings();
+
+      $sql="SELECT bookings2.Id_rezervim,bookings2.Nr_vendeve,bookings2.Data_rez,bookings2.Statusi,cinema2.Em_kinema,theaters2.Em_salla,theaters2.Teknologjia,
+       shows2.Data_sh,shows2.Ora_sh,shows2.Cmimi,movies2.Titull_film
+      FROM bookings2
+      INNER JOIN users2 ON users2.Id_klient=bookings2.JId_klient
+      INNER JOIN shows2 ON shows2.Id_shfaqje=bookings2.JId_show
+      INNER JOIN movies2 ON shows2.JId_film=movies2.Id_film
+      INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
+      INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
+      WHERE users2.Id_klient='$userid' AND bookings2.Statusi='EXPIRED'";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      if(!$stmt)
+      echo '<script>alert("Ga gabim ne DB")</script>';
+      $row=$stmt->fetchAll();
+      return $row;
+    }
+    public function getPaid($userid){
+
+      $this->updateBookings();
+
+      $sql="SELECT bookings2.Id_rezervim,bookings2.Nr_vendeve,bookings2.Data_rez,bookings2.Statusi,cinema2.Em_kinema,theaters2.Em_salla,theaters2.Teknologjia,
+       shows2.Data_sh,shows2.Ora_sh,shows2.Cmimi,movies2.Titull_film
+      FROM bookings2
+      INNER JOIN users2 ON users2.Id_klient=bookings2.JId_klient
+      INNER JOIN shows2 ON shows2.Id_shfaqje=bookings2.JId_show
+      INNER JOIN movies2 ON shows2.JId_film=movies2.Id_film
+      INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
+      INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
+      WHERE users2.Id_klient='$userid' AND bookings2.Statusi='PAID'";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+      if(!$stmt)
+      echo '<script>alert("Ga gabim ne DB")</script>';
+      $row=$stmt->fetchAll();
+      return $row;
+    }
 
     public function updateBookings(){
       $sql="SELECT shows2.Data_sh,shows2.Ora_sh,bookings2.Id_rezervim

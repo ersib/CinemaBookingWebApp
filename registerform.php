@@ -12,6 +12,45 @@
 	<title>Ticket Info - Cinema Theater Website Template</title>
 	<link href="user/bootstrap.css" rel="stylesheet" />
 	<link rel="stylesheet" href="css2/style2.css" type="text/css">
+	<script type="text/javascript">
+		function checkpassword(){
+			var pass=document.getElementById('pass').value;
+		   var cpass=document.getElementById('cpass').value;
+			 var div=document.getElementById('cpwd');
+			 if(pass!=cpass){
+			 div.innerHTML='(The passwords dont match ! )';
+			 }
+			 else{
+				 div.innerHTML='';
+			 }
+		}
+		function checktel(){
+			var tel=document.getElementById('tel').value;
+      if(tel=='')
+			return;
+			var pattern=/06[0-9]{8}/;
+			 var div=document.getElementById('_tel');
+			 if(pattern.exec(tel)){
+			 div.innerHTML='';
+			 }
+			 else{
+				 div.innerHTML='(The phone number is incorrect ! )';
+			 }
+		}
+		function checkemail(){
+			var mail=document.getElementById('email').value;
+			if(mail=='')
+			return;
+			var pattern=/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+			 var div=document.getElementById('_email');
+			 if(pattern.exec(mail)){
+			 div.innerHTML='';
+			 }
+			 else{
+				 div.innerHTML='(The email is incorrect ! )';
+			 }
+		}
+	</script>
 </head>
 <body>
 	<div id="header">
@@ -67,20 +106,25 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Password:</label>
-                                            <input class="form-control" name="password" type="password" required/>
+                                            <input class="form-control" name="password" type="password" id='pass' required/>
                                         </div>
 										<div class="form-group">
                                             <label>Confirm password:</label>
-                                            <input class="form-control" name="cpassword" type="password" required/>
+                                            <input class="form-control" name="cpassword" type="password" id='cpass' onblur="checkpassword();"required/>
                                         </div>
+																				<div id="cpwd" style="color:red";>
+
+																				</div>
 										<div class="form-group">
                                             <label>Phone Nr:</label>
-                                            <input type="tel" class="form-control"  name="tel" placeholder="### ### ####"  required />
+                                            <input type="tel" id='tel' onblur="checktel();" class="form-control"  name="tel" placeholder="06########"  pattern="06[0-9]{8}" required />
 										</div>
+										<div id="_tel" style="color:red">	</div>
                                         <div class="form-group">
                                             <label>Email:</label>
-                                            <input class="form-control" name="email" type="text" required/>
+                                            <input type="email" class="form-control" onblur="checkemail();" name="email" id="email" placeholder="name@domain.com" required/>
                                         </div>
+																					<div id="_email" style="color:red">	</div>
 										 <div class="form-group">
                                             <label>Date of birth:</label>
                                             <input class="form-control" name="ditelindja" type="date" required/>

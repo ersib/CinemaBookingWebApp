@@ -1,9 +1,10 @@
 <?php
 	session_start();
-//	require_once('../dbconfig/config.php');
+	require '../classes/booking.php';
 	require '../classes/user.php';
 	$Id=$_SESSION['iduser'];
   $user=new User();
+	$rezervim=new Booking();
   $currentUser=$user->getUserById($Id);
 	$username=$currentUser->username;
 ?>
@@ -14,8 +15,8 @@
 	<meta charset="UTF-8">
 	<title>Uboard</title>
 	<link href="bootstrap.css" rel="stylesheet" />
-	<link href="assets/css/custom.css" rel="stylesheet" />
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+<!--	<link href="assets/css/custom.css" rel="stylesheet" />
+  <link href="assets/css/font-awesome.css" rel="stylesheet" />-->
 	<link rel="stylesheet" href="ustyle.css" type="text/css">
 
 
@@ -65,6 +66,28 @@
 
   <div id="rightcolumn">
   <h3><strong>Welcome <?php echo $username?> to Userboard </strong></h3>
+<br>
+			<div class="total">
+				<br><br>
+          <strong>Total bookings :</strong> <?php
+                     echo count($user->getUserBookings());
+
+				  ?>
+			</div>
+			<div class="total">
+				<br><br>
+					<strong>Expired bookings :</strong> <?php
+										 echo count($rezervim->getExpired($Id));
+
+					?>
+			</div>
+			<div class="total">
+				<br><br>
+					<strong>Paid bookings :</strong> <?php
+										 echo count($rezervim->getPaid($Id));
+
+					?>
+			</div>
   </div>
 
 </div>

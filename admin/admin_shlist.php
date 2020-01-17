@@ -7,10 +7,11 @@
 	if(isset($_GET['deleteID']))
 	{
          $fshiId=$_GET['deleteID'];
-		 if($fshiId != null){
-		 $user->delete($fshiId);
-	     echo '<script>window.alert("U fshi shfaqja");</script>';
-		 }
+		     if($fshiId != null){
+		      $shfaqje->delete($fshiId);
+	        echo '<script>window.alert("U fshi shfaqja");</script>';
+			    $shfaqje->redirect('admin_shlist.php');
+		    }
 	}
 ?>
 <!DOCTYPE html>
@@ -38,18 +39,16 @@
 
 		<div class="panel panel-default" style="margin-bottom:0px;">
 
-						<div class="panel-heading" style="font-size:1.5em;">
-                          Shows Table
-                        </div>
+						<div class="panel-heading" style="font-size:1.5em;">Shows Table</div>
+            <br>
 
-						<br>
-
-						<a href="admin_addsh.php" class="btn btn-info" style="margin-left:20px; text-decoration:none;"> + Add Show</a>
+						<a href="admin_addshow.php" class="btn btn-info" style="margin-left:20px; text-decoration:none;"> + Add Show</a>
                        <div style="left:630px;position:relative;">
 					   <form method="post">
 					   <input type="text" name="input" placeholder="Search by movie title ..." />
 					   <input type="submit" name="search" value="Search" class="btn btn-info"/>
-					   </form></div>
+					   </form>
+					            </div>
 
 						<div class="panel-body">
                             <div class="table-responsive">
@@ -60,34 +59,26 @@
 <th>Status</th>
 </tr></thead><tbody>';
 $msg2="";
-                  if(isset($_POST['search']))
+                  if(isset($_POST['search']) &&  $_POST['input']!='')
 								  {
 
 									  $input=$_POST['input'];
-									  $sql2="SELECT shows2.Id_shfaqje,shows2.Data_sh, shows2.Ora_sh ,shows2.Cmimi,shows2.VendeRez,
-                                     movies2.Titull_film,cinema2.Em_kinema,theaters2.Em_salla
-									                    FROM shows2
-                                     INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
-                                     INNER JOIN movies2 ON movies2.Id_film=shows2.JId_film
-									 INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
-									 WHERE movies2.Titull_film='$input'";
-	                 $result=mysqli_query($con,$sql2);
 
-									 if(!$result)
-									 echo '<script>alert("ka error")</script>';
+										$search_shfaqjet=$shfaqje->getAllShowsByMovie($input);
 
-									while( $row2=mysqli_fetch_array($result)){
-									 $Id=$row2[0];
-								   $Emri=$row2[5];
-								 $datash=$row2[1];
-								 $orash=$row2[2];
-								 $cmimi=$row2[3];
-								 $vendeR=$row2[4];
-								 $kinema=$row2[6];
-								 $salla=$row2[7];
+									for($i=0;$i<count($search_shfaqjet);$i++){
+									 $Id=$search_shfaqjet[$i][0];
+								   $Emri=$search_shfaqjet[$i][5];
+								 $datash=$search_shfaqjet[$i][1];
+								 $orash=$search_shfaqjet[$i][2];
+								 $cmimi=$search_shfaqjet[$i][3];
+								 $vendeR=$search_shfaqjet[$i][4];
+								 $kinema=$search_shfaqjet[$i][6];
+								 $salla=$search_shfaqjet[$i][7];
+								 $status=$search_shfaqjet[$i][8];
 
 			$msg2.='<tr style="color:blue;"><td>'.$Id.'</td><td style="width:20px">'.$Emri.'</td><td>'.$datash.'</td><td>'.$orash.'</td><td>'.$salla.'</td><td>'.$kinema.'</td>
-          <td>'.$cmimi.'</td><td>'.$vendeR.'</td><td></td>
+          <td>'.$cmimi.'</td><td>'.$vendeR.'</td><td>'.$status.'</td>
 
 		  <td><a href="admin_shlist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
 
@@ -99,27 +90,7 @@ $msg2="";
 								  }
 
 									$msg.=$msg2;
-									/*
-                $sql="SELECT shows2.Id_shfaqje,
-								 shows2.Data_sh,
-								 shows2.Ora_sh ,
-								 shows2.Cmimi,
-								 shows2.VendeRez,
-                                 movies2.Titull_film,
-								 cinema2.Em_kinema,
-								 theaters2.Em_salla
-									 FROM shows2
-                                     INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
-                                     INNER JOIN movies2 ON movies2.Id_film=shows2.JId_film
-									 INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
 
-									 ";
-	                             $res=mysqli_query($con,$sql);
-								 if(!$res) echo '<script>alert("Ka gabim")</script>';*/
-								 //else
-									// echo '<script>alert("eshte ne rregull")</script>';
-
-								// if(mysqli_num_rows($res)){
 								$shfaqjet=$shfaqje->getAllShows();
 								$nr_shfaqjeve=count($shfaqjet);
 
@@ -137,10 +108,10 @@ $msg2="";
 
 
 			$msg.='<tr><td>'.$Id.'</td><td style="width:20px">'.$Emri.'</td><td>'.$datash.'</td><td>'.$orash.'</td><td>'.$salla.'</td><td>'.$kinema.'</td>
-             <td>'.$cmimi.'</td><td>'.$vendeR.'</td>  <td>'.$status.'</td><td><a href="admin_ulist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
+             <td>'.$cmimi.'</td><td>'.$vendeR.'</td>  <td>'.$status.'</td><td><a href="admin_shlist.php?deleteID='.$Id.'"><img width="20px" height="20px" src="../images/trashbin.jpg" /><a></td>
              </tr>';
 								 }
-							//	}
+
 								$msg.="</tbody></table>";
 								 echo $msg;
 								 ?>
