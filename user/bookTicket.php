@@ -60,7 +60,7 @@
 		</div>
 	</div>
 
-	<div id="body" class="Adminboard">
+	<div id="body" class="Userboard">
       <div class="booking-movie">
 			<div class="book-title"><?php echo $mname;?></div>
 			<div class="book-image">

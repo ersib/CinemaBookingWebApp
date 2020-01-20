@@ -43,11 +43,11 @@
 	</div>
 
 	<div id="body" class="loginreg">
-
+<!--
 		<h2 style="text-align:center;color:white;">Login to your account</h2>
-			<hr style="border:1px solid #4F4F4F;"/><br/>
-
-                   <div class="panel panel-danger" style="width:300px;height:300px;position:relative;left:35%;">
+			<hr style="border:1px solid #4F4F4F;"/><br/>-->
+<br>
+                   <div class="panel panel-danger" style="width:350px;height:300px;position:relative;left:30%;">
                         <div class="panel-heading">
                            Please enter username and password :
                         </div>
@@ -60,9 +60,10 @@
                                   <div class="form-group">
                                             <input class="form-control" name="password" type="password" placeholder="Password" />
                                   </div>
+																	  <br>
                                   <input type="submit" style="width:120px" name="submit" value="Login" class="btn btn-danger"/>
 								  <input type="submit" style="width:120px" name="register" value="Register" class="btn btn-danger"/>
-                                        <br>
+
                                     </form>
                             </div>
                         </div>

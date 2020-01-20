@@ -41,7 +41,7 @@
 		</div>
 	</div>
 	<div id="body" class="about">
-		<h2>About</h2>
+		<h2>ABOUT</h2>
 		<div>
 			<div>
 				<h4>The Company</h4>

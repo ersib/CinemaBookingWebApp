@@ -15,8 +15,7 @@
 	<meta charset="UTF-8">
 	<title>Uboard</title>
 	<link href="bootstrap.css" rel="stylesheet" />
-<!--	<link href="assets/css/custom.css" rel="stylesheet" />
-  <link href="assets/css/font-awesome.css" rel="stylesheet" />-->
+		<link rel="stylesheet" href="../css2/style2.css" type="text/css">
 	<link rel="stylesheet" href="ustyle.css" type="text/css">
 
 
@@ -65,7 +64,7 @@
   </div>
 
   <div id="rightcolumn">
-  <h3><strong>Welcome <?php echo $username?> to Userboard </strong></h3>
+  <h3>Welcome <?php echo $username?> to Userboard </h3>
 <br>
 			<div class="total">
 				<br><br>

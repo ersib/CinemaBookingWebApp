@@ -87,10 +87,10 @@
 		</div>
 	</div>
 	<div id="body" class="loginreg">
-		<h2 style="text-align:center;color:white;">Register form</h2>
-		<hr style="border:1px solid #4F4F4F;"/><br/>
-
-			   <div class="panel panel-danger" style="width:330px;position:relative;left:34%;">
+	<!--	<h2 style="text-align:center;color:white;">Register form</h2>
+		<hr style="border:1px solid #4F4F4F;"/><br/>-->
+<br>
+			   <div class="panel panel-danger" style="width:400px;position:relative;left:30%;">
                         <div class="panel-heading">
                            Please fill the register form :
                         </div>
@@ -149,7 +149,6 @@
 		<?php
 		   if(isset($_POST['submit']))
 		   {
-		     // echo '<script type="text/javascript"> alert("Submit button clicked")</script>'; // kur shtyp submit del alert qe sapo e ke shtypur butonin
 			     $username=$_POST['username'];
 			     $password=$_POST['password'];
 			     $cpassword=$_POST['cpassword'];
@@ -162,18 +161,13 @@
 
 				 if($password==$cpassword)
 			    {
-			         /*$query="select * from users2 WHERE username='$username'";
-					     $query_run=mysqli_query($con,$query);
-					  if(mysqli_num_rows($query_run)>0)*/
 						$user=new User();
-						if($user->getUserByUsername($username))
-					  {
+						if($user->getUserByUsername($username)){
 					    echo '<script type="text/javascript"> alert("User already exsts ... Try another username")</script>';
 					  }
 					  else
 					  {
-					    /*$query="insert into users2 values('','$emri','$username','$password','$tel','$email','$ditelindja','$adresa','$qyteti')";
-						$query_run=mysqli_query($con,$query);*/
+
 						 if($user->insert($emri,$username,$password,$tel,$email,$ditelindja,$adresa,$qyteti))
 						 {
 						     echo '<script type="text/javascript"> alert("User registered ... Go to login page")</script>';

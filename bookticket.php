@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
-<?php
 
+<script>
+        window.alert("You must sign in first !")
+        window.location.href="loginform.php";
+</script>
 
-	echo '<script>window.alert("Duhet te regjistrohesh me pare")</script>';
-  //header("location:loginform.php");
-
-?>
+<!--
 <html>
+<!DOCTYPE html>
 <head>
 	<meta charset="UTF-8">
 	<title>Book Ticket - Cinema Theater Website Template</title>
@@ -45,17 +44,14 @@
 
 
 
-		<?php
+
+
 		require_once 'classes/movie.php';
 		$film=new Movie();
 		$filmat=$film->getAllMovies();
 		$nr_filmave=count($filmat);
-		//$conn=mysqli_connect("localhost","root","","cinemadb");
 		$msg='<div class="container_book">';
-		//$sql="select * from movies2";
-    //    if(mysqli_query($conn,$sql))
-    //    {
-            //$res=mysqli_query($conn,$sql);
+
             for($i=0;$i<$nr_filmave;$i++)
             {
 
@@ -68,58 +64,9 @@
 			   }
 
 
-  //    }
-    //    else{
-    //        echo '<script type="text/javascript"> alert("Error !")</script>';
-		//      }
 		$msg.='</div>';
 
 echo $msg;
-		?>
-
-	 <!--
-	    <div class="movielist">
-	       <div class="titleM"><p>Movie 1</p></div>
-		   <div class="photoM"><img src="images/baby-with-dog.jpg"></img></div>
-
-		   <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>
-
-		<div class="movielist">
-	       <div class="titleM"><p>Movie 2</p></div>
-		   <div class="photoM"><img src="images/ballet-dancer.jpg"></img></div>
-
-			  <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>
-
-		<div class="movielist">
-	      <div class="titleM"><p>Movie 3</p></div>
-		  <div class="photoM"><img src="images/soldiers.jpg"></img></div>
-
-		    <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>
-
-		<div class="movielist">
-	      <div class="titleM"><p>Movie 4</p></div>
-		  <div class="photoM"><img src="images/surfer.jpg"></img></div>
-	      <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>
-
-		<div class="movielist">
-	      <div class="titleM"><p>Movie 5</p></div>
-		  <div class="photoM"><img src="images/trainor.jpg"></img></div>
-	     <div class="buton">
-		  <input type="button" name="buton" value="Book ticket"/></div>
-	    </div>-->
-
-
-	   <!-- </div>-->
-
-
 
 
 	</div>
@@ -135,3 +82,4 @@ echo $msg;
 	</div>
 </body>
 </html>
+-->

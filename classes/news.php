@@ -13,47 +13,42 @@ class News {
     }
 
 
-    // Execute queries SQL
-    public function runQuery($sql){
-      $stmt = $this->conn->prepare($sql);
-      return $stmt;
-    }
-
     // Insert
     public function insert($title,$desc,$img){
 		$dataPublikimit=date("Y-m-d H:i:s");
-        $stmt = $this->conn->prepare("INSERT INTO news2 (Titulli_news,Pershkrimi_news,DataPublikimit,Imazh_news) 
+    $res = $this->conn->query("INSERT INTO news2 (Titulli_news,Pershkrimi_news,DataPublikimit,Imazh_news)
 		VALUES('$title', '$desc','$dataPublikimit','$img')");
-        
-		$stmt->execute();     
+return $res;
+	//	$res->execute();
     }
-	
+
 	// Update
     public function update($title,$desc,$img,$nid){
           if($img == null)
 				  $imazh=" ";
 			  else
 				  $imazh=", Imazh_news='$img'";
-        $stmt = $this->conn->prepare("UPDATE news2 SET Titulli_news='$title',Pershkrimi_news='$desc' ".$imazh."
+        $res = $this->conn->query("UPDATE news2 SET Titulli_news='$title',Pershkrimi_news='$desc' ".$imazh."
         WHERE Id_news='$nid'");
-		
-		$res=$stmt->execute();
+
+		//$res=$res->execute();
  if(!$res)
 	 echo '<script type="text/javascript"> alert("Ka gabim !")</script>';
+   return $res;
     }
 
 
 
     // Delete
     public function delete($id){
-      try{
-        $stmt = $this->conn->prepare("DELETE FROM news2 WHERE Id_news = :id");
-        $stmt->bindparam(":id", $id);
-        $stmt->execute();
-        return $stmt;
-      }catch(PDOException $e){
-          echo $e->getMessage();
-      }
+    //  try{
+        $res = $this->conn->query("DELETE FROM news2 WHERE Id_news = '$id'");
+    //    $res->bindparam(":id", $id);
+    //    $res->execute();
+        return $res;
+  //    }catch(PDOException $e){
+  //        echo $e->getMessage();
+    //  }
     }
 
     // Redirect URL method

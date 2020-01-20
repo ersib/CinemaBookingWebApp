@@ -17,7 +17,7 @@
 				</li>
 				<li >
 					<a href="Umovies.php">Movies</a>
-					
+
 				</li>
 				<li>
 					<a href="Ubookticket.php">Book Ticket</a>
@@ -25,7 +25,7 @@
 				<li>
 					<a href="Uboard.php">User Board</a>
 				</li>
-				
+
 				<li class="selected">
 					<a href="Ucontactus.php">Contact Us</a>
 				</li>
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div id="body" class="about">
-		<h2>About</h2>
+		<h2>ABOUT</h2>
 		<div>
 			<div>
 				<h4>The Company</h4>
@@ -88,7 +88,7 @@
 	</div>
 	<div id="footer">
 		<div>
-			
+
 			<p>
 				&#169; 2023 Cinema Theatre
 			</p>

@@ -1,5 +1,5 @@
 <?php
-require_once('../dbconfig/config.php');
+//require_once('../dbconfig/config.php');
 require_once 'database.php';
 
 class Cinema {
@@ -19,9 +19,9 @@ class Cinema {
         $sql=" SELECT *
         FROM cinema2
         WHERE Id_kinema='$id'";
-        $stmt=$this->conn->prepare($sql);
-        $stmt->execute();
-        $row=$stmt->fetch();
+        $res=$this->conn->query($sql);
+        //$res->execute();
+        $row=$res->fetch_array();
         $this->id=$row['Id_kinema'];
         $this->emri=$row['Em_kinema'];
         $this->adresa=$row['Adresa'];
@@ -32,9 +32,9 @@ class Cinema {
         $sql=" SELECT *
         FROM cinema2
         WHERE Em_kinema='$emri'";
-        $stmt=$this->conn->prepare($sql);
-        $stmt->execute();
-        $row=$stmt->fetch();
+        $res=$this->conn->query($sql);
+      //  $res->execute();
+        $row=$res->fetch_array();
         $this->id=$row['Id_kinema'];
         $this->emri=$row['Em_kinema'];
         $this->adresa=$row['Adresa'];
@@ -44,65 +44,53 @@ class Cinema {
 
     public function getAllCinemas(){
       $sql="SELECT * FROM cinema2";
-      $stmt = $this->conn->prepare($sql);
-      $stmt->execute();
-      if(!$stmt)
+      $res = $this->conn->query($sql);
+      //$res->execute();
+      if(!$res)
       echo '<script>alert("Ga gabim ne DB")</script>';
-      $row=$stmt->fetchAll();
+      $row=$res->fetch_array();
       return $row;
     }
     public function getAllTheaters(){
       $sql="SELECT * FROM theaters2 WHERE JId_kinema='$this->id'";
-      $stmt = $this->conn->prepare($sql);
-      $stmt->execute();
-      if(!$stmt)
+      $res = $this->conn->query($sql);
+      //$res->execute();
+      if(!$res)
       echo '<script>alert("Ga gabim ne DB")</script>';
-      $row=$stmt->fetchAll();
+      $row=$res->fetch_all(MYSQLI_ASSOC);
       return $row;
     }
 
-    // Execute queries SQL
-    public function runQuery($sql){
-      $stmt = $this->conn->prepare($sql);
-      return $stmt;
-    }
-
-    // Insert
+  // Insert
     public function insert($name,$adresa,$tel){
-        $stmt = $this->conn->prepare("INSERT INTO cinema2 (Em_kinema,Adresa,Telefoni)
+        $res = $this->conn->query("INSERT INTO cinema2 (Em_kinema,Adresa,Telefoni)
 		VALUES('$name','$adresa', '$tel')");
 
-		$stmt->execute();
+		return $res;
     }
 
 	// Update
     public function update($name,$adresa,$tel,$id){
 
-        $stmt = $this->conn->prepare("UPDATE cinema2 SET Em_kinema='$name',Adresa='$adresa',Telefoni='$tel'
+        $res = $this->conn->query("UPDATE cinema2 SET Em_kinema='$name',Adresa='$adresa',Telefoni='$tel'
         WHERE Id_kinema='$id'");
-
-		$stmt->execute();
-
+        return $res;
     }
-
-
-
     // Delete
     public function delete($id){
-      try{
-        $stmt = $this->conn->prepare("DELETE FROM cinema2 WHERE Id_kinema = :id");
-        $stmt->bindparam(":id", $id);
-        $stmt->execute();
-        return $stmt;
-      }catch(PDOException $e){
-          echo $e->getMessage();
-      }
+    //  try{
+        $res = $this->conn->query("DELETE FROM cinema2 WHERE Id_kinema = '$id'");
+    //    $res->bindparam(":id", $id);
+  //      $res->execute();
+        return $res;
+  //    }catch(PDOException $e){
+  //        echo $e->getMessage();
+  //    }
     }
 
     // Redirect URL method
     public function redirect($url)
 	{
-    //  header("Location: ".$url."");
 	  echo "<script type='text/javascript'> document.location = '$url'; </script>";
     }
 }

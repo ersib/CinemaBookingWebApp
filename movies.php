@@ -46,7 +46,6 @@ require_once 'classes/movie.php';
 
 		<h2>Movies</h2>
 
-
 		<?php
     $film=new Movie();
 		$filmat=$film->getAllMovies();
@@ -56,7 +55,7 @@ require_once 'classes/movie.php';
             for($i=0;$i<$nr_rreshtave;$i++)
             {
 
-                     $mname=$filmat[$i]['Titull_film'];
+                    $mname=$filmat[$i]['Titull_film'];
                     $mdate=$filmat[$i]['Data_fillimit'];
                     $mtime=$filmat[$i]['Kohezgjatja'];
                     $mgenre=$filmat[$i]['Zhanri'];
@@ -67,9 +66,10 @@ require_once 'classes/movie.php';
                     $mimage=$filmat[$i]['Imazhi_film'];
 
                   $msg.= '<div class="filmi"><a href="#"><img src="data:image/jpeg;base64,'.base64_encode($mimage).' alt ="name_of_movie" ></a>';
-				  $msg.='<h3>'.$mname.'</h3><p class="RD">Release Date :'.$mdate.'</p><p> Duration :'.$mtime.'</p>
-				 <p><em>Director</em> :'.$mdir.'</p><p>Cast :'.$mcast.'</p><p>Genre :'.$mgenre.'</p><p>Description:</p>
-				 <p>'.$mdesc.'</p><p><a href="'.$murl.'">Watch the trailer</a> </p></div>';
+				  $msg.='<h3><em>'.$mname.'</em></h3>
+					<p><em>Release Date</em> :'.$mdate.'</p><p><em> Duration :</em>'.$mtime.'</p>
+				 <p><em>Director</em> :'.$mdir.'</p><p><em>Cast :</em>'.$mcast.'</p><p><em>Genre </em>:'.$mgenre.'</p><p><em>Description:</em></p>
+				 <p>'.$mdesc.'</p><p><a href="'.$murl.'" style="color:red" >Watch the trailer</a> </p></div>';
 
 			      }
           echo $msg;

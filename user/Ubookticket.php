@@ -33,8 +33,8 @@
 			<a class="logout" href="../index.php">Log out</a>
 		</div>
 	</div>
-	<div id="body" class="ticket-info">
-		<h2 style="text-align:center;">All movies</h2>
+	<div id="body" class="Userboard">
+		<h2 style="text-align:center;">ALL MOVIES<h2>
 				<hr style="border:1px solid #4F4F4F;"/>
 
 

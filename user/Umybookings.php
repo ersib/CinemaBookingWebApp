@@ -35,6 +35,7 @@
 	<meta charset="UTF-8">
 	<title>Uboard</title>
 	<link href="bootstrap.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css2/style2.css" type="text/css">
 	<link rel="stylesheet" href="ustyle.css" type="text/css">
 
 

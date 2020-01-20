@@ -13,46 +13,41 @@ class Ads {
     }
 
 
-    // Execute queries SQL
-    public function runQuery($sql){
-      $stmt = $this->conn->prepare($sql);
-      return $stmt;
-    }
 
     // Insert
     public function insert($title,$desc,$img){
 		$dataPublikimit=date("Y-m-d H:i:s");
-        $stmt = $this->conn->prepare("INSERT INTO ads2 (Titulli_ads,Permbajtja,DataPublikimit,Imazh_ads) 
+        $res = $this->conn->query("INSERT INTO ads2 (Titulli_ads,Permbajtja,DataPublikimit,Imazh_ads)
 		VALUES('$title', '$desc','$dataPublikimit','$img')");
-        
-		$stmt->execute();     
+        return $res;
+		//$res->execute();
     }
-	
+
 	// Update
     public function update($title,$desc,$img,$aid){
         if($img == null)
 				  $imazh=" ";
 			  else
 				  $imazh=", Imazh_ads='$img'";
-        $stmt = $this->conn->prepare("UPDATE ads2 SET Titulli_ads='$title',Permbajtja='$desc' ".$imazh."
+        $res = $this->conn->query("UPDATE ads2 SET Titulli_ads='$title',Permbajtja='$desc' ".$imazh."
         WHERE Id_ads='$aid'");
-		
-		$stmt->execute();
- 
+
+		return $res;
+
     }
 
 
 
     // Delete
     public function delete($id){
-      try{
-        $stmt = $this->conn->prepare("DELETE FROM ads2 WHERE Id_ads = :id");
-        $stmt->bindparam(":id", $id);
-        $stmt->execute();
-        return $stmt;
-      }catch(PDOException $e){
-          echo $e->getMessage();
-      }
+    //  try{
+        $res = $this->conn->query("DELETE FROM ads2 WHERE Id_ads = '$id'");
+    //    $res->bindparam(":id", $id);
+    //    $res->execute();
+        return $res;
+    //  }catch(PDOException $e){
+    //      echo $e->getMessage();
+    //  }
     }
 
     // Redirect URL method

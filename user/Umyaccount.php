@@ -35,6 +35,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Uboard</title>
+	<link rel="stylesheet" href="../css2/style2.css" type="text/css">
 	<link href="bootstrap.css" rel="stylesheet" />
 	<link rel="stylesheet" href="ustyle.css" type="text/css">
 
@@ -100,17 +101,17 @@
                         <div class="panel-body">
 						 <form action="" method="post">
                           <label>Name:</label>
-		   <p class="formline"><input type="text" name="name" size="20" value="<?php echo $emri; ?>"/> </p>
+		   <p ><input type="text" name="name" size="20" value="<?php echo $emri; ?>"/> </p>
 		   <label>Username:</label>
-		   <p class="formline"><input type="text" name="username" size="20" value="<?php echo $username; ?>" /> </p>
+		   <p ><input type="text" name="username" size="20" value="<?php echo $username; ?>" /> </p>
 		   <label>Phone Nr:</label>
-		   <p class="formline"> <input type="tel"  name="tel" value="<?php echo $tel; ?>" placeholder="### ### ####" pattern="\d{3}+\d{3}+\d{4}" /> </p>
+		   <p > <input type="tel"  name="tel" value="<?php echo $tel; ?>" placeholder="### ### ####" pattern="\d{3}+\d{3}+\d{4}" /> </p>
 		   <label>Email:</label>
-		   <p class="formline"><input type="email" name="email" value="<?php echo $email; ?>"  /> </p>
+		   <p ><input type="email" name="email" value="<?php echo $email; ?>"  /> </p>
 		   <label>Adress:</label>
-		   <p class="formline"><input type="text" name="adresa" size="20" value="<?php echo $adresa; ?>" /> </p>
+		   <p ><input type="text" name="adresa" size="20" value="<?php echo $adresa; ?>" /> </p>
 	       <label>City:</label>
-		   <p class="formline">	  <input type="text" name="qyteti" size="20" value="<?php echo $qyteti; ?>" /> </p>
+		   <p >	  <input type="text" name="qyteti" size="20" value="<?php echo $qyteti; ?>" /> </p>
                         </div>
                         <div class="panel-footer">
                             <input type="submit" name="save" value="Save" class="btn btn-info"/></form>

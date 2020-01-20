@@ -96,15 +96,15 @@ $msg2="";
 
                  for($i=0;$i<$nr_shfaqjeve;$i++)
 								 {
-								 $Id=$shfaqjet[$i][0];
-								 $Emri=$shfaqjet[$i][5];
-								 $datash=$shfaqjet[$i][1];
-								 $orash=$shfaqjet[$i][2];
-								 $cmimi=$shfaqjet[$i][3];
-								 $vendeR=$shfaqjet[$i][4];
-								 $kinema=$shfaqjet[$i][6];
-								 $salla=$shfaqjet[$i][7];
-								 $status=$shfaqjet[$i][8];
+								 $Id=$shfaqjet[$i]['Id_shfaqje'];
+								 $Emri=$shfaqjet[$i]['Titull_film'];
+								 $datash=$shfaqjet[$i]['Data_sh'];
+								 $orash=$shfaqjet[$i]['Ora_sh'];
+								 $cmimi=$shfaqjet[$i]['Cmimi'];
+								 $vendeR=$shfaqjet[$i]['VendeRez'];
+								 $kinema=$shfaqjet[$i]['Em_kinema'];
+								 $salla=$shfaqjet[$i]['Em_salla'];
+								 $status=$shfaqjet[$i]['Status'];
 
 
 			$msg.='<tr><td>'.$Id.'</td><td style="width:20px">'.$Emri.'</td><td>'.$datash.'</td><td>'.$orash.'</td><td>'.$salla.'</td><td>'.$kinema.'</td>
