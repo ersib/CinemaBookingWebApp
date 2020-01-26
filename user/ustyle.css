@@ -25,124 +25,6 @@ body {
 	background: url(../images/bg-body.jpg);
 
 }
-/*
-a {
-	outline:none;
-	text-decoration:none;
-}
-a:hover{
-	color:inherit;
-}
-a img {
-	border:0;
-	display:block;
-}
-p a:hover {
-	color:#e5e5e5!important;
-}*/
-/*------------------------- Header ---------------------------*/
-/*
-#header {
-	background:url(../images/bg-header.png) repeat-x;
-	height:184px;
-	margin:15px 0 0;
-
-}/*
-#header {
-		background:url(../images/bg-header.png) repeat-x;
- color: #333;
- width: 1343px;
- float: left;
- padding: 10px;
- border: 1px solid #ccc;
- height: 100px;
- margin: 10px 0px 0px 0px;
- background-color:#F3F2ED;
-}
-#header div {
-	margin:0 auto;
-	padding:28px 0 0;
-	position:relative;
-	width:960px;
-}
-
-#header div a#logo {
-	display:block;
-	height:129px;
-	margin:0 auto;
-	width:587px;
-}
-#header div ul {
-	height:100px;
-	left:144px;
-	list-style:none;
-	margin:0;
-	overflow:hidden;
-	padding:0;
-	position:absolute;
-	top:119px;
-}
-#header div ul li:first-child {
-	margin:0;
-}
-#header div ul li {
-	float:left;
-	height:66px;
-	margin:0 0 0 65px;
-	text-align:left;
-	position:relative;
-}
-#header div ul li a {
-	color:#000;
-	font-family:oswaldregular;
-	font-size:18px;
-	line-height:24px;
-	text-decoration:none;
-	text-transform:uppercase;
-}
-#header div ul li.selected a, #header div ul li a:hover {
-	color:#af0000;
-}
-#header div ul li ul {
-	height:auto;
-	left:-99999px;
-	overflow:hidden;
-	position:absolute;
-	top:37px;
-	width:115px;
-}
-#header div ul li:hover ul {
-	left:0;
-	top:37px;
-}
-#header div ul li ul li {
-	background:none #343434;
-	border:1px solid #4f4f4f;
-	float:none;
-	height:29px;
-	margin:-1px 0 0;
-	padding:0 12px;
-	position:relative;
-	width:auto;
-	z-index:1000;
-}
-#header div ul li ul li:hover {
-	background:none #af0000;
-}
-#header div ul li ul li:hover {
-	left:0;
-	top:0;
-}
-#header div ul li ul li a {
-	color:#a5a5a5!important;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	line-height:28px;
-	text-transform:none;
-}
-#header div ul li ul li.selected a, #header div ul li ul li a:hover {
-	color:#fff!important;
-}*/
 /*------------------------- Body ---------------------------*/
 #body {
 	background:none #000;
@@ -190,8 +72,8 @@ height:200px;
   border-top : 1px solid #e8dcaf;
   border-bottom : 1px solid #e8dcaf;
  font-family: oswaldregular;
- font-size: 1.13em;
- font-weight: lighter;
+ text-transform:uppercase;
+font-size:1.1em;
 }
 
 .vertical-menu a:hover {
@@ -323,8 +205,7 @@ a.logout{
 	left:26%;
 	margin-top:15px;
 	font-family: serif;
-    font-size: 1.1em;
-	color:white;
+  font-size: 1.2em;
 }
 .book-title{
 
@@ -337,6 +218,7 @@ a.logout{
     position: relative;
     font-family: serif;
     font-weight: bold;
+    color:black;
 }
 .ticket{
 	    width: 292px;
@@ -360,6 +242,7 @@ a.logout{
 	position:relative;
 	left:27%;
 	margin-bottom:7px;
+  font-size: 0.8em;
 }
 .book-cinema p{
 	display:inline;
@@ -367,10 +250,11 @@ a.logout{
 }
 .butonadmin{
 	background-color:green;
-	width:80px;
+	width:120px;
 	padding:2px;
 	color:white;
 	text-align:center;
+  font-size: 0.7em;
 }
 .myaccount{
 	width:360px;

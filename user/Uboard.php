@@ -1,15 +1,15 @@
 <?php
 	session_start();
-	require '../classes/booking.php';
+	require '../classes/rezervim.php';
 	require '../classes/user.php';
 	$Id=$_SESSION['iduser'];
   $user=new User();
-	$rezervim=new Booking();
+	$rezervim=new Rezervim();
   $currentUser=$user->getUserById($Id);
 	$username=$currentUser->username;
 ?>
 <!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -24,29 +24,29 @@
 	<div id="header">
 
 		<div>
-			<a href="index.php" id="logo"><img src="../images/logo.png" alt=""></a>
+			<a href="home.php" id="logo"><img src="../images/logo.png" alt=""></a>
 			<ul>
 				<li>
-					<a href="Uindex.php">Home</a>
+					<a href="Uhome.php">Home</a>
 				</li>
 				<li >
-					<a href="Umovies.php">Movies</a>
+					<a href="Ufilmat.php">Movies</a>
 
 				</li>
 				<li>
-					<a href="Ubookticket.php">Book Ticket</a>
+					<a href="rezervoFilm.php">Book Ticket</a>
 				</li>
 				<li class="selected">
 					<a href="Uboard.php">User Board</a>
 				</li>
 
 				<li>
-					<a href="Ucontactus.php">Contact Us</a>
+					<a href="Urrethnesh.php">Contact Us</a>
 				</li>
 
 			</ul>
 
-			<a class="logout" href="../index.php">Log out</a>
+			<a class="logout" href="../home.php">Log out</a>
 		</div>
 	</div>
 
@@ -56,10 +56,10 @@
 <div id="body" class="Userboard">
    <div id="leftcolumn">
     <div class="vertical-menu">
-      <a href="Ubookticket.php">Book a ticket</a>
-      <a href="Umybookings.php">My bookings</a>
-      <a href="Umyaccount.php">My account</a>
-      <a href="upassword.php">Change password</a>
+      <a href="rezervoFilm.php">Book a ticket</a>
+      <a href="rezervimetEmia.php">My bookings</a>
+      <a href="llogariaIme.php">My account</a>
+      <a href="ndryshoPass.php">Change password</a>
     </div>
   </div>
 

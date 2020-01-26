@@ -1,5 +1,5 @@
 <?php
-//require_once('../dbconfig/config.php');
+//
 require_once 'database.php';
 
 class Shfaqje {
@@ -26,7 +26,7 @@ class Shfaqje {
         WHERE shows2.Id_shfaqje='$showid'";
         $res=$this->conn->query($sql);
       //  $res->execute();
-        $row=$res->fetch_arrayy();
+        $row=$res->fetch_array();
         $this->id=$row['Id_shfaqje'];
         $this->data=$row['Data_sh'];
         $this->ora=$row['Ora_sh'];
@@ -73,7 +73,7 @@ class Shfaqje {
       WHERE shows2.Id_shfaqje='$this->id'";
       $res=$this->conn->query($sql);
       //$res->execute();
-      $row=$res->fetch_all(MYSQLI_ASSOC);
+      $row=$res->fetch_array();
       if($row['VendeRez']>=$row['Kapaciteti']){
       return true;
       }
@@ -112,7 +112,7 @@ class Shfaqje {
      }
    }
    // kthen te gjitha shfaqjet e organizuara per nje titull filmi
-   public function getAllShowsByMovie($title){
+   public function getAllShowsByFilm($title){
      $sql="SELECT shows2.Id_shfaqje,
       shows2.Data_sh,
       shows2.Ora_sh ,
@@ -183,12 +183,6 @@ class Shfaqje {
       //try{
         $res = $this->conn->query("DELETE FROM shows2 WHERE Id_shfaqje = '$id'");
         return $res;
-      //  $res->bindparam(":id", $id);
-      //  $res->execute();
-    //    return $res;
-    //  }catch(PDOException $e){
-    //      echo $e->getMessage();
-    //  }
     }
 
     public function redirect($url){

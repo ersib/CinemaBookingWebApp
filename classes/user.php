@@ -1,7 +1,7 @@
 <?php
 
 require_once 'database.php';
-require_once 'booking.php';
+require_once 'rezervim.php';
 
 class User {
     private $conn;
@@ -90,12 +90,6 @@ class User {
     public function delete($id){
     //  try{
         $res = $this->conn->query("DELETE FROM users2 WHERE Id_klient = '$id'");
-      //  $res->bindparam(":id", $id);
-    //    $res->execute();
-    //    return $res;
-  //    }catch(PDOException $e){
-  //        echo $e->getMessage();
-  //    }
          return $res;
     }
 
@@ -137,8 +131,8 @@ class User {
     }
     // kthen rezervimet e perdoruesit
     public function getUserBookings(){
-         $rezervim=new Booking();
-         return $rezervim->getBookingsByUserId($this->userId);
+         $rezervim=new Rezervim();
+         return $rezervim->getRezervimeByUserId($this->userId);
     }
 
     public function setNewPassword($npassword){
