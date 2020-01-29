@@ -209,12 +209,12 @@ a.logout{
 }
 .book-title{
 
-    width: 150px;
+
     height: 30px;
     padding: 10px;
     font-size: 1.6em;
     text-align: center;
-    left: 29%;
+    
     position: relative;
     font-family: serif;
     font-weight: bold;
@@ -230,7 +230,7 @@ a.logout{
     font-size: 1em;
 }
 .book-image{
-	    background-color: green;
+	    background-color: inherit;
     width: 300px;
     height: 370px;
     position: relative;

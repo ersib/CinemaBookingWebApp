@@ -1,8 +1,15 @@
 <?php
-	session_start();
+session_start();
+if(!isset($_SESSION['username']))
+{
+	header('location: ../logimi.php');
+}
 	require '../classes/rezervim.php';
 	require '../classes/user.php';
+
+
 	$Id=$_SESSION['iduser'];
+
   $user=new User();
 	$rezervim=new Rezervim();
   $currentUser=$user->getUserById($Id);
@@ -46,7 +53,7 @@
 
 			</ul>
 
-			<a class="logout" href="../home.php">Log out</a>
+			<a class="logout" href="../logout.php">Log out</a>
 		</div>
 	</div>
 
@@ -75,6 +82,13 @@
 			</div>
 			<div class="total">
 				<br><br>
+					<strong>Succesfully done bookings :</strong> <?php
+										 echo count($rezervim->getDone($Id));
+
+					?>
+			</div>
+			<div class="total">
+				<br><br>
 					<strong>Expired bookings :</strong> <?php
 										 echo count($rezervim->getExpired($Id));
 
@@ -84,6 +98,13 @@
 				<br><br>
 					<strong>Paid bookings :</strong> <?php
 										 echo count($rezervim->getPaid($Id));
+
+					?>
+			</div>
+			<div class="total">
+				<br><br>
+					<strong>Cancelled bookings :</strong> <?php
+										 echo count($rezervim->getCancelled($Id));
 
 					?>
 			</div>

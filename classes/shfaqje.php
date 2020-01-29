@@ -25,7 +25,7 @@ class Shfaqje {
         FROM shows2
         WHERE shows2.Id_shfaqje='$showid'";
         $res=$this->conn->query($sql);
-      //  $res->execute();
+
         $row=$res->fetch_array();
         $this->id=$row['Id_shfaqje'];
         $this->data=$row['Data_sh'];
@@ -38,13 +38,9 @@ class Shfaqje {
     }
 
     public function isValidShowTime($DitaSH,$KohaSH,$SallaID){
-      $sql="SELECT * FROM shows2 WHERE JId_salla=:'$SallaID' and Ora_sh=:'$KohaSH' and Data_sh=:'$DitaSH'";
+      $sql="SELECT * FROM shows2 WHERE JId_salla='$SallaID' and Ora_sh='$KohaSH' and Data_sh='$DitaSH'";
       $res = $this->conn->query($sql);
-    //  $res->bindparam(":sid", $SallaID);
-    //  $res->bindparam(":ora", $KohaSH);
-  //    $res->bindparam(":dita", $DitaSH);
-  //    $res->execute();
-      if($res->num_rows ()>0)
+      if($res->num_rows>0)
       return false;
       else
       return true;
@@ -54,9 +50,8 @@ class Shfaqje {
     public function getShow($s_id,$data,$ora,$fid){
         $sql=" SELECT * FROM shows2 WHERE shows2.JId_film='$fid' AND shows2.JId_salla='$s_id' AND shows2.Data_sh='$data' AND shows2.Ora_sh";
         $res=$this->conn->query($sql);
-      //  $res->execute();
+
         $row=$res->fetch_array();
-        //$show=new Shfaqje();
         $this->id=$row['Id_shfaqje'];
         $this->data=$row['Data_sh'];
         $this->ora=$row['Ora_sh'];
@@ -72,7 +67,7 @@ class Shfaqje {
       INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
       WHERE shows2.Id_shfaqje='$this->id'";
       $res=$this->conn->query($sql);
-      //$res->execute();
+
       $row=$res->fetch_array();
       if($row['VendeRez']>=$row['Kapaciteti']){
       return true;
@@ -88,26 +83,23 @@ class Shfaqje {
       INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla";
       $res=$this->conn->query($sql);
     $row=$res->fetch_all(MYSQLI_ASSOC);
-    //  $res->execute();
-  //    $row=$res->fetch_array_array();
       $data_sot=date("Y-m-d");
       for($i=0;$i<count($row);$i++){
           $id=$row[$i]['Id_shfaqje'];
         if($row[$i]['Data_sh']<$data_sot){
           $sql=" UPDATE shows2 SET Status='Old show'WHERE Id_shfaqje='$id'";
           $this->conn->query($sql);
-          //$res->execute();
         }
         else if($row[$i]['VendeRez']>=$row[$i]['Kapaciteti']){
            $sql=" UPDATE shows2 SET Status='Sold out'WHERE Id_shfaqje='$id'";
            $this->conn->query($sql);
-          //  $res->execute();
+          ;
         }
        else {
          $sql=" UPDATE shows2 SET Status='Free seats'
          WHERE Id_shfaqje='$id'";
          $this->conn->query($sql);
-         //$res->execute();
+
        }
      }
    }
@@ -126,14 +118,15 @@ class Shfaqje {
       INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
       INNER JOIN movies2 ON movies2.Id_film=shows2.JId_film
       INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
-      WHERE movies2.Titull_film=:'$title'";
+      WHERE movies2.Titull_film='$title'";
 
      $res = $this->conn->query($sql);
     // $res->bindparam(":titull",$title);
-     //$res->execute();
+
      if(!$res)
      echo '<script>alert("Ga gabim ne DB")</script>';
-     $row=$res->fetch_all(MYSQLI_ASSOC);
+
+     $row=$res->fetch_all(MYSQLI_BOTH);
      return $row;
    }
 // kthen te gjitha shfaqjet e organizuara
@@ -151,10 +144,12 @@ class Shfaqje {
          FROM shows2
         INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
         INNER JOIN movies2 ON movies2.Id_film=shows2.JId_film
-        INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema";
+        INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
+        ORDER BY shows2.Data_sh DESC
+        ";
 
       $res = $this->conn->query($sql);
-      //$res->execute();
+
       if(!$res)
       echo '<script>alert("Ga gabim ne DB")</script>';
       $row=$res->fetch_all(MYSQLI_ASSOC);
@@ -165,14 +160,14 @@ class Shfaqje {
     public function insert($DitaSH,$KohaSH,$cmimi,$vendeR,$status,$SallaID,$filmID){
          $sql="insert into shows2 values('','$DitaSH','$KohaSH','$cmimi','$vendeR','$status','$SallaID','$filmID')";
          $res=$this->conn->query($sql);
-         //$res->execute();
+
          return $res;
     }
 
 	// Update
     public function update($name,$nseats,$tech,$idKinema,$id){
       $res = $this->conn->query("UPDATE theaters2 SET Em_salla='$name',Kapaciteti='$nseats',Teknologjia='$tech',JId_kinema='$idKinema'WHERE Id_salla='$id'");
-  //  $res->execute();
+  ;
       return $res;
     }
 

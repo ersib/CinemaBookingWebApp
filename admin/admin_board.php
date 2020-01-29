@@ -1,6 +1,10 @@
 <?php
-	session_start();
-//	require_once('dbconfig/config.php');
+session_start();
+if(!isset($_SESSION['admin']))
+{
+	header('location: ../logimi.php');
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -17,9 +21,9 @@
 <body>
 	<div id="header">
 		<div class="admboard">
-			<a href="index.html" id="logo"><img src="../images/logo.png" alt=""></a>
+			<a  id="logo"><img src="../images/logo.png" alt=""></a>
 			      <div class="helloAd">WELCOME ADMIN !</div>
-			        <a class="logout" href="../home.php">Log out</a>
+			        <a class="logout" href="../logout.php">Log out</a>
 		</div>
 	</div>
 	<div id="body" class="Adminboard" style="background-color:#fceecc;">
