@@ -46,7 +46,8 @@ if(!isset($_SESSION['admin']))
             <br>
 
 						<a href="shto_shfaqje.php" class="btn btn-info" style="margin-left:20px; text-decoration:none;"> + Add Show</a>
-                       <div style="left:630px;position:relative;">
+
+											 <div style="left:630px;position:relative;">
 					   <form method="post">
 					   <input type="text" name="input" placeholder="Search by movie title ..." />
 					   <input type="submit" name="search" value="Search" class="btn btn-info"/>
@@ -69,7 +70,7 @@ $msg2="";
 
 										$search_shfaqjet=$shfaqje->getAllShowsByFilm($input);
                    $Emri="";
-									for($i=0;$i<count($search_shfaqjet);$i++){
+									for($i=0;($i<count($search_shfaqjet)) && ($i<40) ;$i++){
 									 $Id=$search_shfaqjet[$i][0];
 								   $Emri=$search_shfaqjet[$i][5];
 								 $datash=$search_shfaqjet[$i][1];
