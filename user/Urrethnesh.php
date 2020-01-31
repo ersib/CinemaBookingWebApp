@@ -68,7 +68,7 @@
 			<div>
 				<h4>Contact</h4>
 				<img src="../images/retro-telephone.jpg" alt=""> <span class="address">Cinema Theatre, 1076 Stout Street, New Holland, PA 17557</span> <span class="phone-num">717-354-7008</span> <span class="fax-num">717-354-7009</span> <span class="email">info@cinematheatre.com</span>
-	
+
 			</div>
 		</div>
 	</div>
