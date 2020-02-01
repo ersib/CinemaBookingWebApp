@@ -66,7 +66,7 @@ if(!isset($_SESSION['admin']))
                     </div>
 					<div class="element_menu"><a href="lista_njoftimeve.php" style="text-decoration:none;">
                       <div class="element_figure"><br/>
-                             <img src="../images/NjoftimM.png" style="width:130px;height:120px;margin-left:30px;"> <br/>
+                             <img src="../images/NewsM.png" style="width:130px;height:120px;margin-left:30px;"> <br/>
                           <div> News / Advertisemenets </div>
                         </div></a>
                     </div>
