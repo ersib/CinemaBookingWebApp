@@ -14,7 +14,7 @@ class Salla {
       $db = $database->dbConnection();
       $this->conn = $db;
     }
-    public function getAllSallasByCinemId($cid){
+    public function getAllTheatresByCinemId($cid){
       $sql="SELECT * FROM theaters2 WHERE JId_kinema='$cid'";
       $res = $this->conn->query($sql);
     ;

@@ -102,7 +102,7 @@ if(!isset($_SESSION['admin']))
 										   $cID=$_POST['Em_kino'];
                        $msg4="Choose the theater and also fill the date and time:<br><br><form action='' method='post'>";
 		                  $salla=new Salla();
-						          $list_salla=$salla->getAllSallasByCinemId($cID);
+						          $list_salla=$salla->getAllTheatresByCinemId($cID);
 
                       for($i=0;$i<count($list_salla);$i++){
 								    $msg4.='<input type="radio" name="salla" value="'.$list_salla[$i]['Id_salla'].'">'.$list_salla[$i]['Em_salla'].' | Nr.seats:'.$list_salla[$i]['Kapaciteti'].' |Tech:'.$list_salla[$i]['Teknologjia'].'<br>';
