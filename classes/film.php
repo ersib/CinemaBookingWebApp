@@ -26,6 +26,7 @@ class Film {
        $this->conn->query("INSERT INTO movies2 VALUES('','$movname','$movDate','$movTime','$movGenre',' $movCast', '$movDesc','$movDir','$movURL','$fp','$Wimg')");
         return $result;
     }
+
     public function update($movname,$movDate,$movTime,$movGenre, $movCast, $movDesc,$movDir,$movURL,$fp,$Wimg,$mid){
 
 		  if($movDate!=null){
@@ -89,6 +90,7 @@ class Film {
       $row=$res->fetch_all(MYSQLI_ASSOC);
       return $row;
     }
+    
     public function getFilmById($id){
       $res=$this->conn->query("select * from movies2 where Id_film='$id'");
 

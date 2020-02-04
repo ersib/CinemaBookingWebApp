@@ -105,12 +105,12 @@ if(!isset($_SESSION['username']))
 						{
 							 $cid=$_POST['cinema'];
 							 $salla_vlefshme=$film->availableTheatres($cid);
-							 $msg='<label>Select the theater:</label>
-							 <select name="salla">';
+							 $msg='<label>Select the theater:</label><br>';
+							 //<select name="salla">';
 
 									for($i=0;$i<count($salla_vlefshme);$i++){
-										$msg.='<option value="'.$salla_vlefshme[$i]['Id_salla'].'">'.$salla_vlefshme[$i]['Em_salla'].' me teknologji '.$salla_vlefshme[$i]['Teknologjia'].' </option>';
-
+										//$msg.='<option value="'.$salla_vlefshme[$i]['Id_salla'].'">'.$salla_vlefshme[$i]['Em_salla'].' me teknologji '.$salla_vlefshme[$i]['Teknologjia'].' </option>';
+$msg.='<input type="radio" name="salla" value="'.$salla_vlefshme[$i]['Id_salla'].'"/>'.$salla_vlefshme[$i]['Em_salla'].' me teknologji '.$salla_vlefshme[$i]['Teknologjia'].'<br> ';
 									}
 									$msg.='</select>';
 							 echo $msg;
@@ -123,12 +123,14 @@ if(!isset($_SESSION['username']))
 						if(isset($_POST['salla'])){
 						 $s_id=$_POST['salla'];
 						 $data_vlefshme=$film->availableDates($s_id);
-						 $div2=' <label>Select the date</label> <select name="data">';
+						// $div2=' <label>Select the date</label> <select name="data">';
+						$div2=' <label>Select the date</label>';
 								for($j=0;$j<count($data_vlefshme);$j++){
-									 $div2.="<option>".$data_vlefshme[$j][0]."</option>";
+									 //$div2.="<option>".$data_vlefshme[$j][0]."</option>";
+									 $div2.='<input type="radio" name="data" value="'.$data_vlefshme[$j][0].'"/> '.$data_vlefshme[$j][0].' ';
 								 }
-									$div2.="</select>
-                  <input type='hidden' value='".$s_id."' name='idSalla'>";
+									//$div2.="</select>
+                  $div2.="<input type='hidden' value='".$s_id."' name='idSalla'>";
 									echo $div2;
 						 }
 

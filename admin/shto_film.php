@@ -193,22 +193,19 @@ $regjizor="";
 					            $movURL=$_POST['trailerurl'];
 
 						if(isset($_GET['editID']) && !isset($_POST['rdate'])){
-							echo '<script type="text/javascript"> alert("u futem ne update pa date !")</script>';
 						  $film->update($movname,null,$movTime,$movGenre,$movCast,$movDesc,$movDir,$movURL,$fp,$Wimg,$editId);
 						  $film->redirect("lista_filmave.php");
 						  echo '<script type="text/javascript"> alert("Changes are made succesfully !")</script>';
 						}
 						else if(isset($_GET['editID']) && isset($_POST['rdate'])){
-								echo '<script type="text/javascript"> alert("u futem ne update me date !")</script>';
 						  $film->update($movname,$movDate,$movTime,$movGenre,$movCast,$movDesc,$movDir,$movURL,$fp,$Wimg,$editId);
 						  echo '<script type="text/javascript"> alert("Changes are made succesfully !")</script>';
 							$film->redirect("shto_film.php?editID=".$editId."");
 						}
 						else
 						{
-							echo '<script type="text/javascript"> alert("u futem ne insert !")</script>';
 							$film->insert($movname,$movDate,$movTime,$movGenre,$movCast,$movDesc,$movDir,$movURL,$fp,$Wimg);
-							echo '<script type="text/javascript"> alert("User is added succesfully !")</script>';
+							echo '<script type="text/javascript"> alert("Film is added succesfully !")</script>';
 							$film->redirect("lista_filmave.php");
 						}
 

@@ -26,7 +26,7 @@ function validoPass(){
     var tel=document.getElementById('tel').value;
     if(tel=='')
     return;
-    var pattern=/06[0-9]{8}/;
+    var pattern=/^[06]+\d{8}+$/;
      var div=document.getElementById('_tel');
      if(pattern.exec(tel)){
      div.innerHTML='';
