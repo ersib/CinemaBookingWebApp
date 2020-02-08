@@ -32,15 +32,17 @@ class Rezervim {
     }
 
     // Delete
+    // Fshin rezervimin nga DB dhe updaton vendet ne shfaqje dhe updaton statusin.
     public function delete($id){
-        $res = $this->conn->query("DELETE FROM bookings2 WHERE Id_rezervim = '$id'");
         $res2=$this->conn->query("SELECT * FROM bookings2 WHERE Id_rezervim='$id'");
         $row=$res2->fetch_array();
+        $res = $this->conn->query("DELETE FROM bookings2 WHERE Id_rezervim = '$id'");
         $this->updateSeatsOfShow($row['JId_show'],-$row['Nr_vendeve']);
         $shfaqje=new Shfaqje();
         $shfaqje->updateStatusOfShows();
     return $res;
     }
+    // Anullimi ben statusin e rezervimit CANCELLED dhe updaton vendet e shfaqjeve dhe statusin e shfaqjeve
     public function anullo($id){
         $res = $this->conn->query("UPDATE bookings2 SET Statusi='CANCELLED' WHERE Id_rezervim='$id'");
         $res2=$this->conn->query("SELECT * FROM bookings2 WHERE Id_rezervim='$id'");
@@ -69,7 +71,9 @@ class Rezervim {
       INNER JOIN movies2 ON shows2.JId_film=movies2.Id_film
       INNER JOIN theaters2 ON theaters2.Id_salla=shows2.JId_salla
       INNER JOIN cinema2 ON cinema2.Id_kinema=theaters2.JId_kinema
-      WHERE users2.Id_klient='$userid'";
+      WHERE users2.Id_klient='$userid'
+      ORDER BY bookings2.Data_rez DESC
+      ";
       $res = $this->conn->query($sql);
 
       if(!$res)
@@ -168,6 +172,7 @@ class Rezervim {
 
       if(!$res)
       echo '<script>alert("Ga gabim ne DB")</script>';
+
       $row=$res->fetch_all(MYSQLI_BOTH);
       $data_sot=date("Y-m-d");
       $ora_sot=date("h:i:sa");
@@ -182,6 +187,7 @@ class Rezervim {
            $this->updateStatus($row[$i]['Id_rezervim']);
          }
       }
+
     }
     // ndrushon status ne expired
     public function updateStatus($rezId){

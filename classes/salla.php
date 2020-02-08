@@ -68,7 +68,6 @@ class Salla {
     // Redirect URL method
     public function redirect($url)
 	{
-    //  header("Location: ".$url."");
 	  echo "<script type='text/javascript'> document.location = '$url'; </script>";
     }
 }

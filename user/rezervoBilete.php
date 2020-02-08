@@ -123,13 +123,11 @@ $msg.='<input type="radio" name="salla" value="'.$salla_vlefshme[$i]['Id_salla']
 						if(isset($_POST['salla'])){
 						 $s_id=$_POST['salla'];
 						 $data_vlefshme=$film->availableDates($s_id);
-						// $div2=' <label>Select the date</label> <select name="data">';
 						$div2=' <label>Select the date</label>';
 								for($j=0;$j<count($data_vlefshme);$j++){
-									 //$div2.="<option>".$data_vlefshme[$j][0]."</option>";
 									 $div2.='<input type="radio" name="data" value="'.$data_vlefshme[$j][0].'"/> '.$data_vlefshme[$j][0].' ';
 								 }
-									//$div2.="</select>
+
                   $div2.="<input type='hidden' value='".$s_id."' name='idSalla'>";
 									echo $div2;
 						 }
@@ -146,7 +144,8 @@ $msg.='<input type="radio" name="salla" value="'.$salla_vlefshme[$i]['Id_salla']
 								 $div2.="<option>".$oraret_vlefshme[$j][0]."</option>";
 							 }
 							$div2.="</select>
-							<input type='hidden' value='".$idSalla."' name='idSalla'/><input type='hidden' value='".$Data."' name='data2'/>";
+							<input type='hidden' value='".$idSalla."' name='idSalla'/>
+							<input type='hidden' value='".$Data."' name='data2'/>";
 							echo $div2;
 
 						}

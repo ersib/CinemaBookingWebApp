@@ -76,7 +76,9 @@ class Shfaqje {
         return false;
       }
     }
-
+      // Ky funksion vendos Statusin Old Show nqs shfaqje eshte dhene tashme
+      // Vendos Statusin soldOut nqs vendet e Rezervuara te shfaqjes barazojne kapacitetin e slles ku jepet shfaqja.
+      // Ne sese asnje nga rastet e me siperme ska ndodhur statusi do te jete free seats.
     public function updateStatusOfShows(){
       $sql=" SELECT shows2.VendeRez , theaters2.Kapaciteti , shows2.Id_shfaqje , shows2.Data_sh
       FROM shows2
@@ -93,7 +95,7 @@ class Shfaqje {
         else if($row[$i]['VendeRez']>=$row[$i]['Kapaciteti']){
            $sql=" UPDATE shows2 SET Status='Sold out'WHERE Id_shfaqje='$id'";
            $this->conn->query($sql);
-          ;
+
         }
        else {
          $sql=" UPDATE shows2 SET Status='Free seats'
@@ -121,7 +123,6 @@ class Shfaqje {
       WHERE movies2.Titull_film='$title'";
 
      $res = $this->conn->query($sql);
-    // $res->bindparam(":titull",$title);
 
      if(!$res)
      echo '<script>alert("Ga gabim ne DB")</script>';

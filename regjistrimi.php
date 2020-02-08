@@ -128,8 +128,7 @@
 						 {
 						     echo '<script type="text/javascript"> alert("User registered ... Go to login page")</script>';
 						 }
-						 else
-						 {
+						 else{
 						    echo '<script type="text/javascript"> alert("Error!")</script>';
 						 }
 					  }
