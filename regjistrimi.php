@@ -118,7 +118,7 @@
 				 if($password==$cpassword)
 			    {
 						$user=new User();
-						if($user->getUserByUsername($username)){
+						if($user->getUserByUsername($username)){ // Kthen true nqs ka user me kete username 
 					    echo '<script type="text/javascript"> alert("User already exsts ... Try another username")</script>';
 					  }
 					  else

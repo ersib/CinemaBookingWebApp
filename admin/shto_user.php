@@ -90,7 +90,7 @@ if(!isset($_SESSION['admin']))
                                             <label>Password:</label>
 		   <input  <?php if(isset($_GET['editID'])) echo 'type="text"';
 			  else
-				  echo 'type="password"';?> name="password" required size="20" value="<?php echo $password; ?>" />
+				  echo 'type="password"';?> name="password" required size="20"  value="<?php echo $password; ?>" />
                                         </div>
 										 <div class="form-group">
                                              <label>Confirm password:</label>
@@ -101,7 +101,7 @@ if(!isset($_SESSION['admin']))
 
                                   <div class="form-group">
 <label>Phone Nr:</label>
-		    <input type="tel"  name="tel" value="<?php echo $tel; ?>" required placeholder="### ### ####" pattern="\d{3}+\d{3}+\d{4}" />
+		    <input type="tel"  name="tel" value="<?php echo $tel; ?>" required placeholder="### ### ####"  />
                                     </div>
 									<div class="form-group">
                                           <label>Date of birth:</label>
@@ -154,6 +154,7 @@ if(!isset($_SESSION['admin']))
 <?php
       if(isset($_POST['submit']))
 		   {
+
 			     $name=$_POST['name'];
 				   $username=$_POST['username'];
 			     $password=$_POST['password'];
@@ -166,20 +167,11 @@ if(!isset($_SESSION['admin']))
 				   $qyteti=$_POST['qyteti'];
 
 
-						if(isset($_GET['editID']) && !isset($_POST['ditelindja'])){
-							      if(!$edited_user->uniqueUsername($username))
-					          {
-					               echo '<script type="text/javascript"> alert("Already used username !")</script>';
-					          }else{
-						$user->update($name,$username,$password,$tel,$email,null,$adresa,$qyteti,$editId);
-						$user->redirect("admin_lista_userave.php");
-						echo '<script type="text/javascript"> alert("Changes are made succesfully !")</script>';
-							  }
-						}
-						else if(isset($_GET['editID']) && isset($_POST['ditelindja'])){
+						 if(isset($_GET['editID'])){
+
 							  if(!$edited_user->uniqueUsername($username))
 					          {
-					               echo '<script type="text/javascript"> alert("Alreadu used username !")</script>';
+					               echo '<script type="text/javascript"> alert("Already used username !")</script>';
 					          }
 							  else{
 						$user->update($name,$username,$password,$tel,$email,$ditelindja,$adresa,$qyteti,$editId);
@@ -189,11 +181,10 @@ if(!isset($_SESSION['admin']))
 						}
 						else
 						{
-	echo '<script type="text/javascript"> alert("U futem ne else")</script>';
-							//if($edited_user->uniqueUsername($username)){
+
 							if($temp=$user->getUserByUsername($username))
 							{
-								echo '<script type="text/javascript"> alert("User already exsts ... Try another username '.$temp.'")</script>';
+								echo '<script type="text/javascript"> alert("User already exsts ... Try another username !")</script>';
 							}
 							else{
 							  if($password==$cpassword){

@@ -37,23 +37,13 @@ if(!isset($_SESSION['admin']))
 
 		         <div class="panel panel-info" style="width:100%;position:relative;margin-bottom:0px;font-size:1.2em;float:left;">
                          <div class="panel-heading">
-                           <?php if(isset($_GET['editID'])) echo 'Show Details';
-						   else echo 'Add show';
-						   ?>
+                           Add Show
                         </div>
 
 							<a href="lista_shfaqjeve.php"><input type="submit" style="float:right;margin-top:5px;"value="Back to Shows Table"  class="btn btn-info"/></a>
                         <div class="panel-body">
 
-
-							<?php
-							    if(isset($_GET['editID'])){
-                                        echo '<div class="form-group">
-                                            <label>Id:</label>
-		                                         <input type="text" readonly name="name" size="20" value="'.$editId.'"  />
-                                       </div>';
-							    }
-							?>		  <form method="post">
+				   		  <form method="post">
 										<div class="form-group"><br/><br/>
                       <label>Please choose the movie you want to arrange a show:</label><br/><br/>
 											<?php

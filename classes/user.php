@@ -131,6 +131,7 @@ class User {
 
       return $res;
     }
+    // Kthen true nqs ka perdorues me kete username dhe false nese jo
     public function getUserByUsername($username){
       $res=$this->conn->query("SELECT * FROM users2 WHERE username='$username'");
 
@@ -145,7 +146,7 @@ class User {
     public function getAllUsers(){
       $sql="SELECT * FROM users2";
       $res = $this->conn->query($sql);
-    
+
       if(!$res)
       echo '<script>alert("Ga gabim ne DB")</script>';
       $row=$res->fetch_all(MYSQLI_ASSOC);
@@ -155,12 +156,12 @@ class User {
     public function uniqueUsername($username){
       $sql="select * from users2 where username='$username' and Id_klient!='$this->userId'";
       $res = $this->conn->query($sql);
-
-      //$row=$res->fetch_array();
-      if($res->num_rows()>0)
-      return false;
-      else
-      return true;
+      if($res->fetch_array()){
+        return false;
+      }
+      else {
+        return true;
+      }
     }
 
 }

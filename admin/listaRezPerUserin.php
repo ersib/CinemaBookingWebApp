@@ -82,7 +82,7 @@ if(isset($_POST['updatebooking'])){
 		<div class="panel panel-default" style="margin-bottom:0px;">
 
 						<div class="panel-heading" style="font-size:1.5em;">
-                          Rezervim list for <?php echo $userName;?>
+                          Bookings list for <?php echo $userName;?>
                         </div>
 						<a href="admin_lista_userave.php"><input type="submit" style="float:left;margin-top:5px;margin-bottom:5px;background-color:#f5f5f5;color:black;
 						border:1px solid #dddddd" value="Back to Users Table"  class="btn btn-info"/></a>

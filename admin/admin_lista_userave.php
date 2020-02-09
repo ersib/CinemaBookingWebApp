@@ -65,12 +65,12 @@ if(!isset($_SESSION['admin']))
                $msg2="";
 
 										if(isset($_POST['search']) && $_POST['input']!='')
-								  {
+								   {
                     $search_input=$_POST['input'];
 										$searched_user=new User();
 										$searched_user=$user->getUserByName($search_input);
 
-      if($searched_user!=null){
+                      if($searched_user!=null){
 			$msg2='<tr style="color:blue;"><td>'.$searched_user->userId.'</td><td style="width:20px">'.$searched_user->emri.'</td><td>'.$searched_user->username.'</td><td>'.$searched_user->tel.'</td><td>'.$searched_user->email.'</td><td>'.$searched_user->ditelindja.'</td>
           <td>'.$searched_user->adresa.'</td><td>'.$searched_user->qyteti.'</td>
 
@@ -79,10 +79,10 @@ if(!isset($_SESSION['admin']))
 		 <td><a href="listaRezPerUserin.php?userID='.$searched_user->userId.'"><button class="btn btn-primary" style="background-color:#f0ad4e;border:none;">Bookings list</button></td>
 		  </tr>';
 
-								  if($searched_user->emri=="")
-								  $msg2="";
-								  }
-               }
+								         if($searched_user->emri=="")
+								         $msg2="";
+								      }
+                  }
 								 $msg.=$msg2;
 
                  $users_list=$user->getAllUsers();
